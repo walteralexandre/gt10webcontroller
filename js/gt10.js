@@ -338,6 +338,6 @@ if(MidiOutput){MidiInput.onmidimessage=GetBackupSaveOne;MidiOutput.send(message)
 else
 console.log("No Midi outputs.")}
 function GetBackupSaveOne(message){console.log("Resultados");console.log(message.data);}
-function BackupSaveAll(){console.log('Backup Save All');}
-function BackupLoadOne(){console.log('Backup Load One');}
-function BackupLoadAll(){console.log('Backup Load All');}
+function BackupSaveAll(){console.log('Backup Save All not implemented yet');}
+function BackupLoadOne(){console.log('Backup Load One not implemented yet');}
+function BackupLoadAll(){console.log('Backup Load All not implemented yet');}
