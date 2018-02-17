@@ -1,0 +1,13 @@
+div.CustomDatatip {
+	background: 		linear-gradient(orange, darkorange);
+	border-radius: 		5px;
+	box-shadow: 		3px 3px 2px black;
+	color: 				white;
+	display: 			none;
+	max-width: 			300px;
+	min-height: 		30px;
+	min-width: 			150px;
+	padding: 			0px 5px;
+	position: 			absolute;
+	text-align:			justify;
+}
