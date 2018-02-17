@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+	Status:		pronto.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Noise Supressor</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetParameter('NS');" class="getParameters" title="Click to get the parameters.">Noise Supressor</h2>
+		<table>
+			<tr>
+				<td colspan="3"><h2>Noise Supressor 1</h2></td>
+			</tr>
+			<tr>
+				<td class="parameter"><label for="NoiseSupressor1Sw">On/Off</label></td>
+				<td colspan="2"><input type="checkbox" id="NoiseSupressor1Sw" onClick="SetParameter(this.id, this.checked+0);" /></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="range" class="vertical" id="noiseSupressor1Threshold" 	min="0"   max="100"  step="1"   onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="noiseSupressor1Release" 	min="0"   max="100"  step="1"   onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td>
+					<p><input type="radio" name="NoiseSupressor1Detect" id="NoiseSupressor1DetectInput" 	onClick="SetParameter(this.name, 0);" /> <label for="NoiseSupressor1DetectInput">Input</label></p>
+					<p><input type="radio" name="NoiseSupressor1Detect" id="NoiseSupressor1DetectNSInput" 	onClick="SetParameter(this.name, 1);" /> <label for="NoiseSupressor1DetectNSInput">NS Input</label></p>
+					<p><input type="radio" name="NoiseSupressor1Detect" id="NoiseSupressor1DetectFVOut" 	onClick="SetParameter(this.name, 2);" /> <label for="NoiseSupressor1DetectFVOut">FV Out</label></p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center"><input type="number" min="0"   max="100"  step="1" id="NoiseSupressor1Threshold" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="100"  step="1" id="NoiseSupressor1Release" 	onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Threshold</td>
+				<td class="parameter2">Release</td>
+				<td class="parameter2">Detect</td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<td colspan="3"><h2>Noise Supressor 2</h2></td>
+			</tr>
+			<tr>
+				<td class="parameter"><label for="NoiseSupressor2Sw">On/Off</label></td>
+				<td colspan="2"><input type="checkbox" id="NoiseSupressor2Sw" onClick="SetParameter(this.id, this.checked+0);" /></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="range" class="vertical" id="noiseSupressor2Threshold" 	min="0"   max="100"  step="1"   onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="noiseSupressor2Release" 	min="0"   max="100"  step="1"   onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td>
+					<p><input type="radio" name="NoiseSupressor2Detect" id="NoiseSupressor2DetectInput" 	onClick="SetParameter(this.name, 0);" /> <label for="NoiseSupressor2DetectInput">Input</label></p>
+					<p><input type="radio" name="NoiseSupressor2Detect" id="NoiseSupressor2DetectNSInput" 	onClick="SetParameter(this.name, 1);" /> <label for="NoiseSupressor2DetectNSInput">NS Input</label></p>
+					<p><input type="radio" name="NoiseSupressor2Detect" id="NoiseSupressor2DetectFVOut" 	onClick="SetParameter(this.name, 2);" /> <label for="NoiseSupressor2DetectFVOut">FV Out</label></p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center"><input type="number" min="0"   max="100"  step="1" id="NoiseSupressor2Threshold" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="100"  step="1" id="NoiseSupressor2Release" 	onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Threshold</td>
+				<td class="parameter2">Release</td>
+				<td class="parameter2">Detect</td>
+			</tr>
+		</table>
+	</div>
+	<script>
+	<!-- 
+		GT10Controller();
+	-->
+	</script>
+</body>
+</html>

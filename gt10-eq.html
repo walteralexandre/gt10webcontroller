@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+	Status: 	pronto.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Equalizer</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetParameter('Equalizer');" class="getParameters" title="Click to get the parameters.">Equalizer</h2>
+		<table>
+			<tr>
+				<td class="parameter"><label for="EqualizerSw">On/Off</label></td>
+				<td colspan="10"><input type="checkbox" id="EqualizerSw" onClick="SetParameter(this.id, 0+this.checked);" /></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="range" class="vertical" id="equalizerLowCut" 	min="0"   max="10" step="1" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="equalizerLoMidf" 	min="0"   max="27" step="1" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="equalizerHiMidf" 	min="0"   max="27" step="1" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="equalizerHighCut"   min="0"   max="9"  step="1" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="equalizerLowGain" 	min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); 	SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="equalizerLoMidG" 	min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); 	SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="equalizerHiMidG" 	min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); 	SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="equalizerHighGain" 	min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); 	SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="equalizerLoMidQ" 	min="0"   max="5"  step="1" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="equalizerHiMidQ" 	min="0"   max="5"  step="1" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="equalizerLevel" 	min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); 	SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td align="center"><select id="EqualizerLowCut" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);">
+				 	<option value="0">Flat</option>
+				 	<option value="1">55Hz</option>
+				 	<option value="2">110Hz</option>
+				 	<option value="3">165Hz</option>
+				 	<option value="4">200Hz</option>
+				 	<option value="5">280Hz</option>
+				 	<option value="6">340Hz</option>
+				 	<option value="7">400Hz</option>
+				 	<option value="8">500Hz</option>
+				 	<option value="9">630Hz</option>
+				 	<option value="10">800Hz</option>
+				</select></td>
+				<td align="center"><select id="EqualizerLoMidf" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);">
+				 <option value="0">20.0Hz</option>
+				 <option value="1">25.0Hz</option>
+				 <option value="2">31.0Hz</option>
+				 <option value="3">40.0Hz</option>
+				 <option value="4">50.0Hz</option>
+				 <option value="5">63.0Hz</option>
+				 <option value="6">80.0Hz</option>
+				 <option value="7">100Hz</option>
+				 <option value="8">125Hz</option>
+				 <option value="9">160Hz</option>
+				 <option value="10">200Hz</option>
+				 <option value="11">250Hz</option>
+				 <option value="12">315Hz</option>
+				 <option value="13">400Hz</option>
+				 <option value="14">500Hz</option>
+				 <option value="15">630Hz</option>
+				 <option value="16">800Hz</option>
+				 <option value="17">1.00KHz</option>
+				 <option value="18">1.25KHz</option>
+				 <option value="19">1.60KHz</option>
+				 <option value="20">2.00KHz</option>
+				 <option value="21">2.50KHz</option>
+				 <option value="22">3.15KHz</option>
+				 <option value="23">4.00KHz</option>
+				 <option value="24">5.00KHz</option>
+				 <option value="25">6.30KHz</option>
+				 <option value="26">8.00KHz</option>
+				 <option value="27">10.0KHz</option>
+				</select></td>
+				<td align="center"><select id="EqualizerHiMidf" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);">
+				 <option value="0">20.0Hz</option>
+				 <option value="1">25.0Hz</option>
+				 <option value="2">31.0Hz</option>
+				 <option value="3">40.0Hz</option>
+				 <option value="4">50.0Hz</option>
+				 <option value="5">63.0Hz</option>
+				 <option value="6">80.0Hz</option>
+				 <option value="7">100Hz</option>
+				 <option value="8">125Hz</option>
+				 <option value="9">160Hz</option>
+				 <option value="10">200Hz</option>
+				 <option value="11">250Hz</option>
+				 <option value="12">315Hz</option>
+				 <option value="13">400Hz</option>
+				 <option value="14">500Hz</option>
+				 <option value="15">630Hz</option>
+				 <option value="16">800Hz</option>
+				 <option value="17">1.00KHz</option>
+				 <option value="18">1.25KHz</option>
+				 <option value="19">1.60KHz</option>
+				 <option value="20">2.00KHz</option>
+				 <option value="21">2.50KHz</option>
+				 <option value="22">3.15KHz</option>
+				 <option value="23">4.00KHz</option>
+				 <option value="24">5.00KHz</option>
+				 <option value="25">6.30KHz</option>
+				 <option value="26">8.00KHz</option>
+				 <option value="27">10.0KHz</option>
+				</select></td>
+				<td align="center"><select id="EqualizerHighCut" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);">
+					<option value="0">700Hz</option>
+					<option value="1">1,00KHz</option>
+					<option value="2">1,40KHz</option>
+					<option value="3">2,00KHz</option>
+					<option value="4">3,00KHz</option>
+					<option value="5">4,00KHz</option>
+					<option value="6">6,00KHz</option>
+					<option value="7">8,00KHz</option>
+					<option value="8">11,0KHz</option>
+					<option value="9">Flat</option>
+				</select></td>
+				<td align="center"><input type="number" id="EqualizerLowGain" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="EqualizerLoMidG" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="EqualizerHiMidG" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="EqualizerHighGain" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><select id="EqualizerLoMidQ" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);">
+				 <option value="0">0.5</option>
+				 <option value="1">1</option>
+				 <option value="2">2</option>
+				 <option value="3">4</option>
+				 <option value="4">8</option>
+				 <option value="5">16</option>
+				</select></td>
+				<td align="center"><select id="EqualizerHiMidQ" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);">
+				 <option value="0">0.5</option>
+				 <option value="1">1</option>
+				 <option value="2">2</option>
+				 <option value="3">4</option>
+				 <option value="4">8</option>
+				 <option value="5">16</option>
+				</select></td>
+				<td align="center"><input type="number" id="EqualizerLevel" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Low Cut</td>
+				<td class="parameter2">Lo-Mid f</td>
+				<td class="parameter2">Hi-Mid f</td>
+				<td class="parameter2">High Cut</td>
+				<td class="parameter2">Low Gain</td>
+				<td class="parameter2">Lo-Mid G*</td>
+				<td class="parameter2">Hi-Mid G</td>
+				<td class="parameter2">High Gain</td>
+				<td class="parameter2">Lo-Mid Q</td>
+				<td class="parameter2">Hi-Mid Q</td>
+				<td class="parameter2">Level</td>
+			</tr>
+		</table>
+		<span class="parameter">Random</span>
+		<input type="button" value="Gain" 		onClick="RandomParameter('Equalizer', this.value);" />
+		<input type="button" value="Freq" 		onClick="RandomParameter('Equalizer', this.value);" />
+		<input type="button" value="Gain+Freq" 	onClick="RandomParameter('Equalizer', this.value);" />
+		<input type="button" value="All" 		onClick="RandomParameter('Equalizer', this.value);" />
+		<br/> * Tip: the 'Lo-Mid G' parameter is used by Ez Tone do make sounds proper to backing (-12), middle (0) or solo(0).
+	</div>
+	<script>
+	<!--
+		GT10Controller();
+	-->
+	</script>
+</body>

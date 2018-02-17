@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+	Status:		pronto.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Reverb</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetParameter('Reverb');" class="getParameters" title="Click to get the parameters.">Reverb</h2>
+		<table>
+			<tr>
+				<td class="parameter"><label for="ReverbSw">On/Off</label></td>
+				<td><input type="checkbox" id="ReverbSw" onClick="SetParameter(this.id, this.checked+0);" /></td>
+				<td class="parameter">Type</td>
+				<td colspan="5"><select id="ReverbType" onChange="SetParameter(this.id, this.value);">
+					<option value="0">Ambience</option>
+					<option value="1">Room</option>
+					<option value="2">Hall 1</option>
+					<option value="3">Hall 2</option>
+					<option value="4">Plate</option>
+					<option value="5">Spring</option>
+					<option value="6">Modulate</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="range" class="vertical" id="reverbTime" 		min="0.1" max="10.0" step="0.1" onChange="SetParameter(this.id, (this.value-0.1)*10); 	SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="reverbPreDelay"		min="0"   max="500"  step="1"   onChange="SetParameter(this.id, this.value); 			SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="reverbLowCut" 		min="0"   max="10"   step="1"   onChange="SetParameter(this.id, this.value); 			SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="reverbHighCut" 		min="0"   max="9"    step="1"   onChange="SetParameter(this.id, this.value); 			SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="reverbDensity" 		min="0"   max="10"   step="1"   onChange="SetParameter(this.id, this.value); 			SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="reverbSprgSens" 	min="0"   max="100"  step="1"   onChange="SetParameter(this.id, this.value); 			SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="reverbEffectLev" 	min="0"   max="100"  step="1"   onChange="SetParameter(this.id, this.value); 			SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="reverbDirectLev" 	min="0"   max="100"  step="1"   onChange="SetParameter(this.id, this.value); 			SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="number" min="0.1" max="10.0" step="0.1" id="ReverbTime" 	onChange="SetParameter(this.id, (this.value-0.1)*10); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="500"  step="1" id="ReverbPreDelay" 	onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><select id="ReverbLowCut" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);">
+				 	<option value="0">Flat</option>
+				 	<option value="1">55Hz</option>
+				 	<option value="2">110Hz</option>
+				 	<option value="3">165Hz</option>
+				 	<option value="4">200Hz</option>
+				 	<option value="5">280Hz</option>
+				 	<option value="6">340Hz</option>
+				 	<option value="7">400Hz</option>
+				 	<option value="8">500Hz</option>
+				 	<option value="9">630Hz</option>
+				 	<option value="10">800Hz</option>
+				</select></td>
+				<td align="center"><select id="ReverbHighCut" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);">
+					<option value="0">700Hz</option>
+					<option value="1">1,00KHz</option>
+					<option value="2">1,40KHz</option>
+					<option value="3">2,00KHz</option>
+					<option value="4">3,00KHz</option>
+					<option value="5">4,00KHz</option>
+					<option value="6">6,00KHz</option>
+					<option value="7">8,00KHz</option>
+					<option value="8">11,0KHz</option>
+					<option value="9">Flat</option>
+				</select></td>
+				<td align="center"><input type="number" min="0"   max="10"   step="1" id="ReverbDensity" 	onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="100"  step="1" id="ReverbSprgSens" 	onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="100"  step="1" id="ReverbEffectLev" 	onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="10 "  step="1" id="ReverbDirectLev" 	onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Time</td>
+				<td class="parameter2">Pre Delay</td>
+				<td class="parameter2">Low Cut</td>
+				<td class="parameter2">High Cut</td>
+				<td class="parameter2">Density</td>
+				<td class="parameter2">Sprg.Sens</td>
+				<td class="parameter2">EffectLev</td>
+				<td class="parameter2">DirectLev</td>
+			</tr>
+		</table>
+		
+		<br />
+		Random
+		<input type="button" onClick="RandomParameter('Reverb', this.value);" value="Except Type" />
+		<input type="button" onClick="RandomParameter('Reverb', this.value);" value="All" />
+	</div>
+	<script>
+	<!-- 
+		GT10Controller();
+	-->
+	</script>
+</body>
+</html>

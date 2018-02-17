@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+	Status:	Testar.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Amp Control</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<link rel="stylesheet" type="text/css" href="css/CustomDatatip.css" />
+	<script src="js/gt10.js"></script>
+	<script src="js/CustomDatatip.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetParameter('AmpControl');" class="getParameters" title="Click to get the parameters.">Amp Control</h2>
+		<p>
+			<table style="padding:5px 10px;">
+				<tr >
+					<td class="parameter"><label for="AmpControl" data-tip=" <p>By connecting your guitar amp's channel switching jack to the GT-10’s AMP CONTROL jack, you can then use Amp Control to switch the amp channel.</p> <p>This combining of the GT-10 and the amp channels allows you to get an even wider variety of distortion sounds.</p> <p>Since the Amp Control setting is handled as one of the effects parameters saved to each individual patch, it allows you to switch guitar amp channels with each patch.</p> <p>&bull; To determine how the amp channels are switched when the circuit is open and shorted, refer to the amp owner’s manual, or actually confirm the sounds by operating the amp.</p> <p>&bull; Note that, depending on the circuitry of the channel switching jack in the guitar amp used, the Amp Control function may not operate.</p> <img src='img/memo.png'/><p>&bull; With Amp Control, not only can you switch amp channels, you can also use it to switch the amp's effects on and off, like a footswitch controller.</p><p>&bull; You can also switch this parameter using [MASTER/PEDAL FX] in the AMP CONTROL screen.</p>">On/Off:</label></td>
+					<td><input type="checkbox" id="AmpControl" OnClick="SetParameter(this.id,this.checked+0);" />&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+			</table>
+		</p>
+	</div>
+	<script>
+	<!-- 
+		GT10Controller();
+		var dt = document.querySelector('div.CustomDatatip');
+		dt.style.maxWidth = "500px";
+	-->
+	</script>
+</body>
+</html>

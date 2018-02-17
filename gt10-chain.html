@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!-- 
+	Status: 	pronto.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Fx Chain</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetParameter('FxChain');" class="getParameters" title="Click to get the parameters.">Effects Chain</h2>
+		<table cellspacing="0">
+			<tr>
+				<td align="right"><img src="img/a1.png" /></td>
+				<td>
+					<div class="fxChainContainer" id="fxChainA">
+						<input type="button" value="Preamp A" 		class="fxChainOff"  draggable="true"  id="p2"   onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="NS 1" 			class="fxChainOn"   draggable="true"  id="p12"   onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value=" " 			    class="fxChain"     draggable="false" id="ps"   disabled />
+					</div></td>
+				<td align="left"><img src="img/a2.png" /></td>
+			</tr>
+			<tr>
+				<td>
+					<div class="fxChainContainer" id="fxChainPre">
+						<input type="button" value="FX-1" 			class="fxChainOff" draggable="true"  id="p5"   onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="Comp" 			class="fxChainOff" draggable="true"  id="p0"   onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="Pedal" 			class="fxChainOff" draggable="true"  id="p10"  onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="S/R" 			class="fxChainOff" draggable="true"  id="p14"   onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="OD/DS" 			class="fxChainOff" draggable="true"  id="p1"   onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value=" " 			    class="fxChain"    draggable="false" id="ps"   disabled />
+					</div>
+					</td>
+				<td></td>
+				<td>
+					<div class="fxChainContainer" id="fxChainPos">
+						<input type="button" value="Eq" 			class="fxChainOff" draggable="true"  id="p4"   onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="Foot Vol" 		class="fxChainOn"  draggable="true"  id="p11"  onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="FX-2" 			class="fxChainOff" draggable="true"  id="p6"   onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="Delay" 			class="fxChainOff" draggable="true"  id="p7"  onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="Chorus" 		class="fxChainOff" draggable="true"  id="p8"  onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="Reverb" 		class="fxChainOff" draggable="true"  id="p9"  onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="Digital Out" 	class="fxChainOn"  draggable="true"  id="p15"  onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value=" " 			    class="fxChain"    draggable="false" id="ps"   disabled />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="right"><img src="img/b1.png" /></td>
+				<td>
+					<div class="fxChainContainer" id="fxChainB">
+						<input type="button" value="Preamp B" 		class="fxChainOff" draggable="true"  id="p3"   onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value="NS 2" 			class="fxChainOn"  draggable="true"  id="p13"  onClick="onOffEffect(this)" onDblClick="" />
+						<input type="button" value=" " 			    class="fxChain"    draggable="false" id="ps"   disabled />
+					</div>
+				</td>
+				<td align="left"><img src="img/b2.png" /></td>
+			</tr>
+		</table>
+		<span class="parameter">Random</span> 
+		<input type="button" value="Half" onClick="RandomFxChain(1);"/> 
+		<input type="button" value="Whole" onClick="RandomFxChain(2);"/>
+	</div>
+	<script>
+	<!--
+		var dragSource;
+		var pedals = document.querySelectorAll(".fxChainOff,.fxChainOn,.fxChain");
+		
+		for (var pedal of pedals) {
+			pedal.addEventListener('dragstart', onDragStartFunc, false);
+			pedal.addEventListener('dragenter', onDragEnterFunc, false);
+			pedal.addEventListener('dragover', 	onDragOverFunc, false);
+			pedal.addEventListener('dragleave', onDragLeaveFunc, false);
+			pedal.addEventListener('dragend', 	onDragEndFunc, false);
+			pedal.addEventListener('drop', 		onDropFunc, false);
+		}
+		
+		function onDragStartFunc(event) {
+			this.style.opacity 				 = '0.4';
+			dragSource 						 = this;
+			event.dataTransfer.effectAllowed = 'move';
+			event.dataTransfer.setData('text/html', this.outerHTML);
+		}
+		function onDragEnterFunc(event) {
+			this.classList.add('fxChainOver');
+		}
+		function onDragLeaveFunc(event) {
+			this.classList.remove('fxChainOver');
+		}
+		function onDragOverFunc(event) {
+			if (event.preventDefault) event.preventDefault();
+			event.dataTransfer.dropEffect = 'move';
+		}
+		function onDragEndFunc(event) {
+			this.style.opacity = 'initial';
+		}
+		function onDropFunc(event) {
+			if (event.stopPropagation) event.stopPropagation();
+			if (dragSource == this) {this.classList.remove('fxChainOver'); return;}
+			
+			var sourceContainer = dragSource.parentNode;
+			var targetContainer = this.parentNode;
+			var i;
+			
+			i = 0;
+			while (i<sourceContainer.children.length){
+				if (sourceContainer.children[i].value == dragSource.value)
+					sourceContainer.children[i].remove();
+				i++;
+			}
+			targetContainer.insertBefore(dragSource, this);
+			this.classList.remove('fxChainOver');
+			
+			SetFxChain();
+
+			return false;
+		}
+
+		function onOffEffect(obj) {
+			var onStatus;
+			
+			if (obj.className == "fxChainOff") {
+				obj.className = "fxChainOn";
+				onStatus      = 1;
+			}
+			else {
+				obj.className = "fxChainOff";
+				onStatus	  = 0;
+			}
+
+			switch(obj.value) {
+				case "Comp": 		SetParameter("CompressorSw", onStatus); 	 break;
+				case "OD/DS": 		SetParameter("OdDsSw", onStatus); 			 break;
+				case "S/R": 		SetParameter("SendreturnSw", onStatus); 	 break;
+				case "FX-1": 		SetParameter("Fx1Sw", onStatus); 			 break;
+				case "FX-2": 		SetParameter("Fx2Sw", onStatus); 			 break;
+				case "Preamp A": 	SetParameter("PreampSw", onStatus); 		 
+									document.getElementById("p3").className = obj.className;
+									break;
+				case "Preamp B": 	SetParameter("PreampSw", onStatus); 		 
+									document.getElementById("p2").className = obj.className;
+									break;
+				case "NS 1": 		SetParameter("Noisesupressor1Sw", onStatus); break;
+				case "NS 2": 		SetParameter("Noisesupressor2Sw", onStatus); break;
+				case "Eq": 			SetParameter("EqualizerSw", onStatus); 		 break;
+				case "Delay": 		SetParameter("DelaySw", onStatus); 			 break;
+				case "Chorus": 		SetParameter("ChorusSw", onStatus); 		 break;
+				case "Reverb": 		SetParameter("ReverbSw", onStatus); 		 break;
+				case "Pedal": 		SetParameter("PdlSw", onStatus);
+									if (onStatus == 1) 
+										document.getElementById("p11").className = "fxChainOff";
+									else									
+										document.getElementById("p11").className = "fxChainOn"; 
+									break;
+				case "Foot Vol": 	SetParameter("PdlSw", 1-onStatus);
+									if (onStatus == 1)
+										document.getElementById("p10").className = "fxChainOff";
+									else
+										document.getElementById("p10").className = "fxChainOn";
+									break;
+				case "Digital Out": obj.className = "fxChainOn"; 				 break;		// digital out nunca desativa
+			}
+		}
+		
+		
+		GT10Controller(); // Inicia controlador da gt 10
+	-->
+	</script>
+</body>
+</html>

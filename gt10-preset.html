@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+	Status: 	pronto.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Patch Select</title>
+	<link rel="stylesheet" type="text/css" href="css/CustomDatatip.css" />
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/CustomDatatip.js"></script>
+	<script src="js/gt10.js"></script>
+	
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetPresetNames();" class="getParameters" title="Click to get the parameters.">Patch List</h2>
+		<table>
+			<tr><td class="parameter2">User Patches</td><td class="parameter2">Preset Patches</td></tr>
+			<tr>
+				<td>
+					<select onChange="PresetSelect(this.value); document.getElementById('PresetSelectP').selectedIndex = -1;" id="PresetSelectU" style="width:220px;" size="8">
+						<option value='U01-1' id='U01-1'>U01-1</option>
+						<option value='U01-2' id='U01-2'>U01-2</option>
+						<option value='U01-3' id='U01-3'>U01-3</option>
+						<option value='U01-4' id='U01-4'>U01-4</option>
+						<option value='U02-1' id='U02-1'>U02-1</option>
+						<option value='U02-2' id='U02-2'>U02-2</option>
+						<option value='U02-3' id='U02-3'>U02-3</option>
+						<option value='U02-4' id='U02-4'>U02-4</option>
+						<option value='U03-1' id='U03-1'>U03-1</option>
+						<option value='U03-2' id='U03-2'>U03-2</option>
+						<option value='U03-3' id='U03-3'>U03-3</option>
+						<option value='U03-4' id='U03-4'>U03-4</option>
+						<option value='U04-1' id='U04-1'>U04-1</option>
+						<option value='U04-2' id='U04-2'>U04-2</option>
+						<option value='U04-3' id='U04-3'>U04-3</option>
+						<option value='U04-4' id='U04-4'>U04-4</option>
+						<option value='U05-1' id='U05-1'>U05-1</option>
+						<option value='U05-2' id='U05-2'>U05-2</option>
+						<option value='U05-3' id='U05-3'>U05-3</option>
+						<option value='U05-4' id='U05-4'>U05-4</option>
+						<option value='U06-1' id='U06-1'>U06-1</option>
+						<option value='U06-2' id='U06-2'>U06-2</option>
+						<option value='U06-3' id='U06-3'>U06-3</option>
+						<option value='U06-4' id='U06-4'>U06-4</option>
+						<option value='U07-1' id='U07-1'>U07-1</option>
+						<option value='U07-2' id='U07-2'>U07-2</option>
+						<option value='U07-3' id='U07-3'>U07-3</option>
+						<option value='U07-4' id='U07-4'>U07-4</option>
+						<option value='U08-1' id='U08-1'>U08-1</option>
+						<option value='U08-2' id='U08-2'>U08-2</option>
+						<option value='U08-3' id='U08-3'>U08-3</option>
+						<option value='U08-4' id='U08-4'>U08-4</option>
+						<option value='U09-1' id='U09-1'>U09-1</option>
+						<option value='U09-2' id='U09-2'>U09-2</option>
+						<option value='U09-3' id='U09-3'>U09-3</option>
+						<option value='U09-4' id='U09-4'>U09-4</option>
+						<option value='U10-1' id='U10-1'>U10-1</option>
+						<option value='U10-2' id='U10-2'>U10-2</option>
+						<option value='U10-3' id='U10-3'>U10-3</option>
+						<option value='U10-4' id='U10-4'>U10-4</option>
+						<option value='U11-1' id='U11-1'>U11-1</option>
+						<option value='U11-2' id='U11-2'>U11-2</option>
+						<option value='U11-3' id='U11-3'>U11-3</option>
+						<option value='U11-4' id='U11-4'>U11-4</option>
+						<option value='U12-1' id='U12-1'>U12-1</option>
+						<option value='U12-2' id='U12-2'>U12-2</option>
+						<option value='U12-3' id='U12-3'>U12-3</option>
+						<option value='U12-4' id='U12-4'>U12-4</option>
+						<option value='U13-1' id='U13-1'>U13-1</option>
+						<option value='U13-2' id='U13-2'>U13-2</option>
+						<option value='U13-3' id='U13-3'>U13-3</option>
+						<option value='U13-4' id='U13-4'>U13-4</option>
+						<option value='U14-1' id='U14-1'>U14-1</option>
+						<option value='U14-2' id='U14-2'>U14-2</option>
+						<option value='U14-3' id='U14-3'>U14-3</option>
+						<option value='U14-4' id='U14-4'>U14-4</option>
+						<option value='U15-1' id='U15-1'>U15-1</option>
+						<option value='U15-2' id='U15-2'>U15-2</option>
+						<option value='U15-3' id='U15-3'>U15-3</option>
+						<option value='U15-4' id='U15-4'>U15-4</option>
+						<option value='U16-1' id='U16-1'>U16-1</option>
+						<option value='U16-2' id='U16-2'>U16-2</option>
+						<option value='U16-3' id='U16-3'>U16-3</option>
+						<option value='U16-4' id='U16-4'>U16-4</option>
+						<option value='U17-1' id='U17-1'>U17-1</option>
+						<option value='U17-2' id='U17-2'>U17-2</option>
+						<option value='U17-3' id='U17-3'>U17-3</option>
+						<option value='U17-4' id='U17-4'>U17-4</option>
+						<option value='U18-1' id='U18-1'>U18-1</option>
+						<option value='U18-2' id='U18-2'>U18-2</option>
+						<option value='U18-3' id='U18-3'>U18-3</option>
+						<option value='U18-4' id='U18-4'>U18-4</option>
+						<option value='U19-1' id='U19-1'>U19-1</option>
+						<option value='U19-2' id='U19-2'>U19-2</option>
+						<option value='U19-3' id='U19-3'>U19-3</option>
+						<option value='U19-4' id='U19-4'>U19-4</option>
+						<option value='U20-1' id='U20-1'>U20-1</option>
+						<option value='U20-2' id='U20-2'>U20-2</option>
+						<option value='U20-3' id='U20-3'>U20-3</option>
+						<option value='U20-4' id='U20-4'>U20-4</option>
+						<option value='U21-1' id='U21-1'>U21-1</option>
+						<option value='U21-2' id='U21-2'>U21-2</option>
+						<option value='U21-3' id='U21-3'>U21-3</option>
+						<option value='U21-4' id='U21-4'>U21-4</option>
+						<option value='U22-1' id='U22-1'>U22-1</option>
+						<option value='U22-2' id='U22-2'>U22-2</option>
+						<option value='U22-3' id='U22-3'>U22-3</option>
+						<option value='U22-4' id='U22-4'>U22-4</option>
+						<option value='U23-1' id='U23-1'>U23-1</option>
+						<option value='U23-2' id='U23-2'>U23-2</option>
+						<option value='U23-3' id='U23-3'>U23-3</option>
+						<option value='U23-4' id='U23-4'>U23-4</option>
+						<option value='U24-1' id='U24-1'>U24-1</option>
+						<option value='U24-2' id='U24-2'>U24-2</option>
+						<option value='U24-3' id='U24-3'>U24-3</option>
+						<option value='U24-4' id='U24-4'>U24-4</option>
+						<option value='U25-1' id='U25-1'>U25-1</option>
+						<option value='U25-2' id='U25-2'>U25-2</option>
+						<option value='U25-3' id='U25-3'>U25-3</option>
+						<option value='U25-4' id='U25-4'>U25-4</option>
+						<option value='U26-1' id='U26-1'>U26-1</option>
+						<option value='U26-2' id='U26-2'>U26-2</option>
+						<option value='U26-3' id='U26-3'>U26-3</option>
+						<option value='U26-4' id='U26-4'>U26-4</option>
+						<option value='U27-1' id='U27-1'>U27-1</option>
+						<option value='U27-2' id='U27-2'>U27-2</option>
+						<option value='U27-3' id='U27-3'>U27-3</option>
+						<option value='U27-4' id='U27-4'>U27-4</option>
+						<option value='U28-1' id='U28-1'>U28-1</option>
+						<option value='U28-2' id='U28-2'>U28-2</option>
+						<option value='U28-3' id='U28-3'>U28-3</option>
+						<option value='U28-4' id='U28-4'>U28-4</option>
+						<option value='U29-1' id='U29-1'>U29-1</option>
+						<option value='U29-2' id='U29-2'>U29-2</option>
+						<option value='U29-3' id='U29-3'>U29-3</option>
+						<option value='U29-4' id='U29-4'>U29-4</option>
+						<option value='U30-1' id='U30-1'>U30-1</option>
+						<option value='U30-2' id='U30-2'>U30-2</option>
+						<option value='U30-3' id='U30-3'>U30-3</option>
+						<option value='U30-4' id='U30-4'>U30-4</option>
+						<option value='U31-1' id='U31-1'>U31-1</option>
+						<option value='U31-2' id='U31-2'>U31-2</option>
+						<option value='U31-3' id='U31-3'>U31-3</option>
+						<option value='U31-4' id='U31-4'>U31-4</option>
+						<option value='U32-1' id='U32-1'>U32-1</option>
+						<option value='U32-2' id='U32-2'>U32-2</option>
+						<option value='U32-3' id='U32-3'>U32-3</option>
+						<option value='U32-4' id='U32-4'>U32-4</option>
+						<option value='U33-1' id='U33-1'>U33-1</option>
+						<option value='U33-2' id='U33-2'>U33-2</option>
+						<option value='U33-3' id='U33-3'>U33-3</option>
+						<option value='U33-4' id='U33-4'>U33-4</option>
+						<option value='U34-1' id='U34-1'>U34-1</option>
+						<option value='U34-2' id='U34-2'>U34-2</option>
+						<option value='U34-3' id='U34-3'>U34-3</option>
+						<option value='U34-4' id='U34-4'>U34-4</option>
+						<option value='U35-1' id='U35-1'>U35-1</option>
+						<option value='U35-2' id='U35-2'>U35-2</option>
+						<option value='U35-3' id='U35-3'>U35-3</option>
+						<option value='U35-4' id='U35-4'>U35-4</option>
+						<option value='U36-1' id='U36-1'>U36-1</option>
+						<option value='U36-2' id='U36-2'>U36-2</option>
+						<option value='U36-3' id='U36-3'>U36-3</option>
+						<option value='U36-4' id='U36-4'>U36-4</option>
+						<option value='U37-1' id='U37-1'>U37-1</option>
+						<option value='U37-2' id='U37-2'>U37-2</option>
+						<option value='U37-3' id='U37-3'>U37-3</option>
+						<option value='U37-4' id='U37-4'>U37-4</option>
+						<option value='U38-1' id='U38-1'>U38-1</option>
+						<option value='U38-2' id='U38-2'>U38-2</option>
+						<option value='U38-3' id='U38-3'>U38-3</option>
+						<option value='U38-4' id='U38-4'>U38-4</option>
+						<option value='U39-1' id='U39-1'>U39-1</option>
+						<option value='U39-2' id='U39-2'>U39-2</option>
+						<option value='U39-3' id='U39-3'>U39-3</option>
+						<option value='U39-4' id='U39-4'>U39-4</option>
+						<option value='U40-1' id='U40-1'>U40-1</option>
+						<option value='U40-2' id='U40-2'>U40-2</option>
+						<option value='U40-3' id='U40-3'>U40-3</option>
+						<option value='U40-4' id='U40-4'>U40-4</option>
+						<option value='U41-1' id='U41-1'>U41-1</option>
+						<option value='U41-2' id='U41-2'>U41-2</option>
+						<option value='U41-3' id='U41-3'>U41-3</option>
+						<option value='U41-4' id='U41-4'>U41-4</option>
+						<option value='U42-1' id='U42-1'>U42-1</option>
+						<option value='U42-2' id='U42-2'>U42-2</option>
+						<option value='U42-3' id='U42-3'>U42-3</option>
+						<option value='U42-4' id='U42-4'>U42-4</option>
+						<option value='U43-1' id='U43-1'>U43-1</option>
+						<option value='U43-2' id='U43-2'>U43-2</option>
+						<option value='U43-3' id='U43-3'>U43-3</option>
+						<option value='U43-4' id='U43-4'>U43-4</option>
+						<option value='U44-1' id='U44-1'>U44-1</option>
+						<option value='U44-2' id='U44-2'>U44-2</option>
+						<option value='U44-3' id='U44-3'>U44-3</option>
+						<option value='U44-4' id='U44-4'>U44-4</option>
+						<option value='U45-1' id='U45-1'>U45-1</option>
+						<option value='U45-2' id='U45-2'>U45-2</option>
+						<option value='U45-3' id='U45-3'>U45-3</option>
+						<option value='U45-4' id='U45-4'>U45-4</option>
+						<option value='U46-1' id='U46-1'>U46-1</option>
+						<option value='U46-2' id='U46-2'>U46-2</option>
+						<option value='U46-3' id='U46-3'>U46-3</option>
+						<option value='U46-4' id='U46-4'>U46-4</option>
+						<option value='U47-1' id='U47-1'>U47-1</option>
+						<option value='U47-2' id='U47-2'>U47-2</option>
+						<option value='U47-3' id='U47-3'>U47-3</option>
+						<option value='U47-4' id='U47-4'>U47-4</option>
+						<option value='U48-1' id='U48-1'>U48-1</option>
+						<option value='U48-2' id='U48-2'>U48-2</option>
+						<option value='U48-3' id='U48-3'>U48-3</option>
+						<option value='U48-4' id='U48-4'>U48-4</option>
+						<option value='U49-1' id='U49-1'>U49-1</option>
+						<option value='U49-2' id='U49-2'>U49-2</option>
+						<option value='U49-3' id='U49-3'>U49-3</option>
+						<option value='U49-4' id='U49-4'>U49-4</option>
+						<option value='U50-1' id='U50-1'>U50-1</option>
+						<option value='U50-2' id='U50-2'>U50-2</option>
+						<option value='U50-3' id='U50-3'>U50-3</option>
+						<option value='U50-4' id='U50-4'>U50-4</option>
+					</select>
+				</td>
+				<td>
+					<select onChange="PresetSelect(this.value); document.getElementById('PresetSelectU').selectedIndex = -1;" id="PresetSelectP" style="width:220px;" size="8">
+						<option value='P01-1' id='P01-1'>P01-1</option>
+						<option value='P01-2' id='P01-2'>P01-2</option>
+						<option value='P01-3' id='P01-3'>P01-3</option>
+						<option value='P01-4' id='P01-4'>P01-4</option>
+						<option value='P02-1' id='P02-1'>P02-1</option>
+						<option value='P02-2' id='P02-2'>P02-2</option>
+						<option value='P02-3' id='P02-3'>P02-3</option>
+						<option value='P02-4' id='P02-4'>P02-4</option>
+						<option value='P03-1' id='P03-1'>P03-1</option>
+						<option value='P03-2' id='P03-2'>P03-2</option>
+						<option value='P03-3' id='P03-3'>P03-3</option>
+						<option value='P03-4' id='P03-4'>P03-4</option>
+						<option value='P04-1' id='P04-1'>P04-1</option>
+						<option value='P04-2' id='P04-2'>P04-2</option>
+						<option value='P04-3' id='P04-3'>P04-3</option>
+						<option value='P04-4' id='P04-4'>P04-4</option>
+						<option value='P05-1' id='P05-1'>P05-1</option>
+						<option value='P05-2' id='P05-2'>P05-2</option>
+						<option value='P05-3' id='P05-3'>P05-3</option>
+						<option value='P05-4' id='P05-4'>P05-4</option>
+						<option value='P06-1' id='P06-1'>P06-1</option>
+						<option value='P06-2' id='P06-2'>P06-2</option>
+						<option value='P06-3' id='P06-3'>P06-3</option>
+						<option value='P06-4' id='P06-4'>P06-4</option>
+						<option value='P07-1' id='P07-1'>P07-1</option>
+						<option value='P07-2' id='P07-2'>P07-2</option>
+						<option value='P07-3' id='P07-3'>P07-3</option>
+						<option value='P07-4' id='P07-4'>P07-4</option>
+						<option value='P08-1' id='P08-1'>P08-1</option>
+						<option value='P08-2' id='P08-2'>P08-2</option>
+						<option value='P08-3' id='P08-3'>P08-3</option>
+						<option value='P08-4' id='P08-4'>P08-4</option>
+						<option value='P09-1' id='P09-1'>P09-1</option>
+						<option value='P09-2' id='P09-2'>P09-2</option>
+						<option value='P09-3' id='P09-3'>P09-3</option>
+						<option value='P09-4' id='P09-4'>P09-4</option>
+						<option value='P10-1' id='P10-1'>P10-1</option>
+						<option value='P10-2' id='P10-2'>P10-2</option>
+						<option value='P10-3' id='P10-3'>P10-3</option>
+						<option value='P10-4' id='P10-4'>P10-4</option>
+						<option value='P11-1' id='P11-1'>P11-1</option>
+						<option value='P11-2' id='P11-2'>P11-2</option>
+						<option value='P11-3' id='P11-3'>P11-3</option>
+						<option value='P11-4' id='P11-4'>P11-4</option>
+						<option value='P12-1' id='P12-1'>P12-1</option>
+						<option value='P12-2' id='P12-2'>P12-2</option>
+						<option value='P12-3' id='P12-3'>P12-3</option>
+						<option value='P12-4' id='P12-4'>P12-4</option>
+						<option value='P13-1' id='P13-1'>P13-1</option>
+						<option value='P13-2' id='P13-2'>P13-2</option>
+						<option value='P13-3' id='P13-3'>P13-3</option>
+						<option value='P13-4' id='P13-4'>P13-4</option>
+						<option value='P14-1' id='P14-1'>P14-1</option>
+						<option value='P14-2' id='P14-2'>P14-2</option>
+						<option value='P14-3' id='P14-3'>P14-3</option>
+						<option value='P14-4' id='P14-4'>P14-4</option>
+						<option value='P15-1' id='P15-1'>P15-1</option>
+						<option value='P15-2' id='P15-2'>P15-2</option>
+						<option value='P15-3' id='P15-3'>P15-3</option>
+						<option value='P15-4' id='P15-4'>P15-4</option>
+						<option value='P16-1' id='P16-1'>P16-1</option>
+						<option value='P16-2' id='P16-2'>P16-2</option>
+						<option value='P16-3' id='P16-3'>P16-3</option>
+						<option value='P16-4' id='P16-4'>P16-4</option>
+						<option value='P17-1' id='P17-1'>P17-1</option>
+						<option value='P17-2' id='P17-2'>P17-2</option>
+						<option value='P17-3' id='P17-3'>P17-3</option>
+						<option value='P17-4' id='P17-4'>P17-4</option>
+						<option value='P18-1' id='P18-1'>P18-1</option>
+						<option value='P18-2' id='P18-2'>P18-2</option>
+						<option value='P18-3' id='P18-3'>P18-3</option>
+						<option value='P18-4' id='P18-4'>P18-4</option>
+						<option value='P19-1' id='P19-1'>P19-1</option>
+						<option value='P19-2' id='P19-2'>P19-2</option>
+						<option value='P19-3' id='P19-3'>P19-3</option>
+						<option value='P19-4' id='P19-4'>P19-4</option>
+						<option value='P20-1' id='P20-1'>P20-1</option>
+						<option value='P20-2' id='P20-2'>P20-2</option>
+						<option value='P20-3' id='P20-3'>P20-3</option>
+						<option value='P20-4' id='P20-4'>P20-4</option>
+						<option value='P21-1' id='P21-1'>P21-1</option>
+						<option value='P21-2' id='P21-2'>P21-2</option>
+						<option value='P21-3' id='P21-3'>P21-3</option>
+						<option value='P21-4' id='P21-4'>P21-4</option>
+						<option value='P22-1' id='P22-1'>P22-1</option>
+						<option value='P22-2' id='P22-2'>P22-2</option>
+						<option value='P22-3' id='P22-3'>P22-3</option>
+						<option value='P22-4' id='P22-4'>P22-4</option>
+						<option value='P23-1' id='P23-1'>P23-1</option>
+						<option value='P23-2' id='P23-2'>P23-2</option>
+						<option value='P23-3' id='P23-3'>P23-3</option>
+						<option value='P23-4' id='P23-4'>P23-4</option>
+						<option value='P24-1' id='P24-1'>P24-1</option>
+						<option value='P24-2' id='P24-2'>P24-2</option>
+						<option value='P24-3' id='P24-3'>P24-3</option>
+						<option value='P24-4' id='P24-4'>P24-4</option>
+						<option value='P25-1' id='P25-1'>P25-1</option>
+						<option value='P25-2' id='P25-2'>P25-2</option>
+						<option value='P25-3' id='P25-3'>P25-3</option>
+						<option value='P25-4' id='P25-4'>P25-4</option>
+						<option value='P26-1' id='P26-1'>P26-1</option>
+						<option value='P26-2' id='P26-2'>P26-2</option>
+						<option value='P26-3' id='P26-3'>P26-3</option>
+						<option value='P26-4' id='P26-4'>P26-4</option>
+						<option value='P27-1' id='P27-1'>P27-1</option>
+						<option value='P27-2' id='P27-2'>P27-2</option>
+						<option value='P27-3' id='P27-3'>P27-3</option>
+						<option value='P27-4' id='P27-4'>P27-4</option>
+						<option value='P28-1' id='P28-1'>P28-1</option>
+						<option value='P28-2' id='P28-2'>P28-2</option>
+						<option value='P28-3' id='P28-3'>P28-3</option>
+						<option value='P28-4' id='P28-4'>P28-4</option>
+						<option value='P29-1' id='P29-1'>P29-1</option>
+						<option value='P29-2' id='P29-2'>P29-2</option>
+						<option value='P29-3' id='P29-3'>P29-3</option>
+						<option value='P29-4' id='P29-4'>P29-4</option>
+						<option value='P30-1' id='P30-1'>P30-1</option>
+						<option value='P30-2' id='P30-2'>P30-2</option>
+						<option value='P30-3' id='P30-3'>P30-3</option>
+						<option value='P30-4' id='P30-4'>P30-4</option>
+						<option value='P31-1' id='P31-1'>P31-1</option>
+						<option value='P31-2' id='P31-2'>P31-2</option>
+						<option value='P31-3' id='P31-3'>P31-3</option>
+						<option value='P31-4' id='P31-4'>P31-4</option>
+						<option value='P32-1' id='P32-1'>P32-1</option>
+						<option value='P32-2' id='P32-2'>P32-2</option>
+						<option value='P32-3' id='P32-3'>P32-3</option>
+						<option value='P32-4' id='P32-4'>P32-4</option>
+						<option value='P33-1' id='P33-1'>P33-1</option>
+						<option value='P33-2' id='P33-2'>P33-2</option>
+						<option value='P33-3' id='P33-3'>P33-3</option>
+						<option value='P33-4' id='P33-4'>P33-4</option>
+						<option value='P34-1' id='P34-1'>P34-1</option>
+						<option value='P34-2' id='P34-2'>P34-2</option>
+						<option value='P34-3' id='P34-3'>P34-3</option>
+						<option value='P34-4' id='P34-4'>P34-4</option>
+						<option value='P35-1' id='P35-1'>P35-1</option>
+						<option value='P35-2' id='P35-2'>P35-2</option>
+						<option value='P35-3' id='P35-3'>P35-3</option>
+						<option value='P35-4' id='P35-4'>P35-4</option>
+						<option value='P36-1' id='P36-1'>P36-1</option>
+						<option value='P36-2' id='P36-2'>P36-2</option>
+						<option value='P36-3' id='P36-3'>P36-3</option>
+						<option value='P36-4' id='P36-4'>P36-4</option>
+						<option value='P37-1' id='P37-1'>P37-1</option>
+						<option value='P37-2' id='P37-2'>P37-2</option>
+						<option value='P37-3' id='P37-3'>P37-3</option>
+						<option value='P37-4' id='P37-4'>P37-4</option>
+						<option value='P38-1' id='P38-1'>P38-1</option>
+						<option value='P38-2' id='P38-2'>P38-2</option>
+						<option value='P38-3' id='P38-3'>P38-3</option>
+						<option value='P38-4' id='P38-4'>P38-4</option>
+						<option value='P39-1' id='P39-1'>P39-1</option>
+						<option value='P39-2' id='P39-2'>P39-2</option>
+						<option value='P39-3' id='P39-3'>P39-3</option>
+						<option value='P39-4' id='P39-4'>P39-4</option>
+						<option value='P40-1' id='P40-1'>P40-1</option>
+						<option value='P40-2' id='P40-2'>P40-2</option>
+						<option value='P40-3' id='P40-3'>P40-3</option>
+						<option value='P40-4' id='P40-4'>P40-4</option>
+						<option value='P41-1' id='P41-1'>P41-1</option>
+						<option value='P41-2' id='P41-2'>P41-2</option>
+						<option value='P41-3' id='P41-3'>P41-3</option>
+						<option value='P41-4' id='P41-4'>P41-4</option>
+						<option value='P42-1' id='P42-1'>P42-1</option>
+						<option value='P42-2' id='P42-2'>P42-2</option>
+						<option value='P42-3' id='P42-3'>P42-3</option>
+						<option value='P42-4' id='P42-4'>P42-4</option>
+						<option value='P43-1' id='P43-1'>P43-1</option>
+						<option value='P43-2' id='P43-2'>P43-2</option>
+						<option value='P43-3' id='P43-3'>P43-3</option>
+						<option value='P43-4' id='P43-4'>P43-4</option>
+						<option value='P44-1' id='P44-1'>P44-1</option>
+						<option value='P44-2' id='P44-2'>P44-2</option>
+						<option value='P44-3' id='P44-3'>P44-3</option>
+						<option value='P44-4' id='P44-4'>P44-4</option>
+						<option value='P45-1' id='P45-1'>P45-1</option>
+						<option value='P45-2' id='P45-2'>P45-2</option>
+						<option value='P45-3' id='P45-3'>P45-3</option>
+						<option value='P45-4' id='P45-4'>P45-4</option>
+						<option value='P46-1' id='P46-1'>P46-1</option>
+						<option value='P46-2' id='P46-2'>P46-2</option>
+						<option value='P46-3' id='P46-3'>P46-3</option>
+						<option value='P46-4' id='P46-4'>P46-4</option>
+						<option value='P47-1' id='P47-1'>P47-1</option>
+						<option value='P47-2' id='P47-2'>P47-2</option>
+						<option value='P47-3' id='P47-3'>P47-3</option>
+						<option value='P47-4' id='P47-4'>P47-4</option>
+						<option value='P48-1' id='P48-1'>P48-1</option>
+						<option value='P48-2' id='P48-2'>P48-2</option>
+						<option value='P48-3' id='P48-3'>P48-3</option>
+						<option value='P48-4' id='P48-4'>P48-4</option>
+						<option value='P49-1' id='P49-1'>P49-1</option>
+						<option value='P49-2' id='P49-2'>P49-2</option>
+						<option value='P49-3' id='P49-3'>P49-3</option>
+						<option value='P49-4' id='P49-4'>P49-4</option>
+						<option value='P50-1' id='P50-1'>P50-1</option>
+						<option value='P50-2' id='P50-2'>P50-2</option>
+						<option value='P50-3' id='P50-3'>P50-3</option>
+						<option value='P50-4' id='P50-4'>P50-4</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		
+		<p>
+			<span class="parameter">Random</span>
+			<input type="button" value="User" 	onClick="RandomPreset(this.value);" />
+			<input type="button" value="Preset" onClick="RandomPreset(this.value);" />
+			<input type="button" value="All" 	onClick="RandomPreset(this.value);" />
+		</p>
+		<p>
+			<span class="parameter">Backup</span>
+			<input type="button" value="Save All" onClick="BackupSaveAll()"; />
+			<input type="button" value="Load All" onClick="BackupLoadAll()"; />
+			
+			<input type="button" value="Save One" onClick="BackupSaveOne(176)"; />
+			<input type="button" value="Load One" onClick="BackupLoadOne()"; />
+		</p>
+	</div>
+	<script>
+	<!--
+		GT10Controller();
+	-->
+	</script>
+</body>
+</html>

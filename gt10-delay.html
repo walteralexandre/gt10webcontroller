@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!-- 
+	Status:		pronto.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Delay</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetParameter('delay');" class="getParameters" title="Click to get the parameters.">Delay</h2>
+		<table>
+			<tr><td colspan="5"><h2>Common</h2></td></tr>
+			<tr><td><label for="DelaySw">On/Off</label></td><td colspan="4"><input type="checkbox" id="DelaySw" onClick="SetParameter(this.id, this.checked+0);" /></td></tr>
+			<tr><td>Type</td><td colspan="4">
+				<select id="DelayType" onChange="SetParameter(this.id, this.value);">
+					<option value="0" title="This is a simple monaural delay.">Single</option>
+					<option value="1" title="This delay is specifically for stereo output. This allows you to obtain the tap delay effect that divides the delay time, then deliver them to L and R channels.">Pan</option>
+					<option value="2" title="The direct sound is output from the left channel, and the effect sound is output from the right channel.">Stereo</option>
+					<option value="3" title="This is a delay comprising two different delays connected in series. Each delay time can be set in a range from 1 ms to 1700 ms.">Dual Series</option>
+					<option value="4" title="This is a delay comprising two delays connected in parallel. Each delay time can be set in a range from 1 ms to 1700 ms.">Dual Parallel</option>
+					<option value="5" title="This is a delay with individual settings available for the left and right channels. Delay 1 goes to the left channel, Delay 2 to the right.">Dual-L/R</option>
+					<option value="6" title="This produces an effect where the sound is played back in reverse.">Reverse</option>
+					<option value="7" title="This gives a mild analog delay sound. The delay time can be set within the range of 1 to 3400 ms.">Analog</option>
+					<option value="8" title="This setting provides the characteristic wavering sound of the tape echo. The delay time can be set within the range of 1 to 3400 ms.">Tape</option>
+					<option value="9" title="This simultaneously controls the delay sound’s feedback level and volume to produce a totally unreal delay.">Warp</option>
+					<option value="10" title="This delay adds a pleasant wavering effect to the sound.">Modulate</option>
+				</select>
+			</td></tr>
+			<tr>
+				<td align="center"><input type="range" class="vertical" id="delayDlyTime"   min="1" max="3413" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumberSelect(this,3400,'bpm');" /></td>
+				<td align="center"><input type="range" class="vertical" id="delayFeedback"  min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="delayHighCut"   min="0" max="9" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="delayEffectLev" min="0" max="120" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="delayDirectLev" min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td>
+					<span class="number">
+						<label id="DelayDlyTime2"></label>
+						<input type="number" id="DelayDlyTime" min="1" max="3413" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumberSelect(this,3400,'bpm');" style="width:13px; border:none;" />
+					</span>
+				</td>
+				<td><input type="number" id="DelayFeedback" min="0" max="100" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td><select id="DelayHighCut" onChange="SetValueRangeNumber(this);">
+					<option value="0">700Hz</option>
+					<option value="1">1.00KHz</option>
+					<option value="2">1.40KHz</option>
+					<option value="3">2.00KHz</option>
+					<option value="4">3.00KHz</option>
+					<option value="5">4.00KHz</option>
+					<option value="6">6.00KHz</option>
+					<option value="7">8.00KHz</option>
+					<option value="8">11.0KHz</option>
+					<option value="9">Flat</option>
+				</select></td>
+				<td><input type="number" id="DelayEffectLev" min="0" max="120" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td><input type="number" id="DelayDirectLev" min="0" max="100" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Delay Time</td>
+				<td class="parameter2">Feedback</td>
+				<td class="parameter2">High Cut</td>
+				<td class="parameter2">Effect<br/>Level</td>
+				<td class="parameter2">Direct<br/>Level</td>
+			</tr>
+		</table>
+		
+		<br/>
+		
+		<table>
+			<tr><td><h2>Pan</h2></td></tr>
+			<tr><td align="center"><input type="range"  id="delayTapTime" class="vertical"   min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td></tr>
+			<tr><td><input type="number" id="DelayTapTime" min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td></tr>
+			<tr><td class="parameter2">Tap Time</td></tr>
+		</table>
+		
+		<table>
+			<tr><td colspan="8"><h2>Dual</h2></td></tr>
+			<tr>
+				<td align="center"><input type="range"  id="delayD1Time"  class="vertical"   min="1" max="1713" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumberSelect(this,1700,'bpm');" /></td>
+				<td align="center"><input type="range"  id="delayD1Fbk"   class="vertical"   min="0" max="100"  step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range"  id="delayD1HiCut" class="vertical"   min="0" max="9"    step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range"  id="delayD1Level" class="vertical"   min="0" max="120"  step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range"  id="delayD2Time"  class="vertical"   min="1" max="1713" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumberSelect(this,1700,'bpm');" /></td>
+				<td align="center"><input type="range"  id="delayD2Fbk"   class="vertical"   min="0" max="100"  step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range"  id="delayD2HiCut" class="vertical"   min="0" max="9"    step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range"  id="delayD2Level" class="vertical"   min="0" max="120"  step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td>
+					<span class="number">
+						<label id="DelayD1Time2"></label>
+						<input type="number" id="DelayD1Time" min="1" max="1713" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumberSelect(this,1700,'bpm');" style="width:13px; border:none;" />
+					</span>
+				</td>
+				<td><input type="number" id="DelayD1Fbk"   min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td><select id="DelayD1HiCut" onChange="SetValueRangeNumber(this)">
+					<option value="0">700Hz</option>
+					<option value="1">1.00KHz</option>
+					<option value="2">1.40KHz</option>
+					<option value="3">2.00KHz</option>
+					<option value="4">3.00KHz</option>
+					<option value="5">4.00KHz</option>
+					<option value="6">6.00KHz</option>
+					<option value="7">8.00KHz</option>
+					<option value="8">11.0KHz</option>
+					<option value="9">Flat</option>
+				</select></td>
+				<td><input type="number" id="DelayD1Level" min="0" max="120" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td>
+					<span class="number">
+						<label id="DelayD2Time2"></label>
+						<input type="number" id="DelayD2Time" min="1" max="1713" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumberSelect(this,1700,'bpm');" style="width:13px; border:none;" />
+					</span>
+				</td>
+				<td><input type="number" id="DelayD2Fbk"   min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td><select id="DelayD2HiCut" onChange="SetValueRangeNumber(this)">
+					<option value="0">700Hz</option>
+					<option value="1">1.00KHz</option>
+					<option value="2">1.40KHz</option>
+					<option value="3">2.00KHz</option>
+					<option value="4">3.00KHz</option>
+					<option value="5">4.00KHz</option>
+					<option value="6">6.00KHz</option>
+					<option value="7">8.00KHz</option>
+					<option value="8">11.0KHz</option>
+					<option value="9">Flat</option>
+				</select></td>
+				<td><input type="number" id="DelayD2Level" min="0" max="120" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">D1 Time</td>
+				<td class="parameter2">D1 Fbk</td>
+				<td class="parameter2">D1 HiCut</td>
+				<td class="parameter2">D1 Level</td>
+				<td class="parameter2">D2 Time</td>
+				<td class="parameter2">D2 Fbk</td>
+				<td class="parameter2">D2 HiCut</td>
+				<td class="parameter2">D2 Level</td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr><td colspan="3"><h2>Warp</h2></td></tr>
+			<tr>
+				<td class="parameter"><label for="DelayWarpSw">On/Off</label></td>
+				<td colspan="2"><input type="checkbox" id="DelayWarpSw" onClick="SetParameter(this.id, this.checked+0);" /></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="range"  id="delayRiseTime"  class="vertical"   min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range"  id="delayFBDepth"   class="vertical"   min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range"  id="delayLevelDep"  class="vertical"   min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td><input type="number" id="DelayRiseTime"  min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td><input type="number" id="DelayFBDepth"   min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td><input type="number" id="DelayLevelDep"  min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter">Rise Time</td>
+				<td class="parameter">F.B. Depth</td>
+				<td class="parameter">Level Dep</td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr><td colspan="2"><h2>Modulate</h2></td></tr>
+			<tr>
+				<td align="center"><input type="range"  id="delayModRate"  class="vertical"   min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range"  id="delayModDepth" class="vertical"   min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td><input type="number" id="DelayModRate"  min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td><input type="number" id="DelayModDepth" min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Rate</td>
+				<td class="parameter2">Depth</td>
+			</tr>
+		</table>
+		
+		<br/>
+		
+		Random 
+		<input type="button" onClick="RandomParameter('Delay', this.value);" value="Common" />
+		<input type="button" onClick="RandomParameter('Delay', this.value);" value="Pan" />
+		<input type="button" onClick="RandomParameter('Delay', this.value);" value="Dual" />
+		<input type="button" onClick="RandomParameter('Delay', this.value);" value="Warp" />
+		<input type="button" onClick="RandomParameter('Delay', this.value);" value="Modulate" />
+		<input type="button" onClick="RandomParameter('Delay', this.value);" value="All" />
+	</div>
+	
+	<script>
+	<!-- 
+		GT10Controller();
+	-->
+	</script>
+</body>
+</html>

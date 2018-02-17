@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+	Status:		pronto.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Compressor</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetParameter('Compressor');" class="getParameters" title="Click to get the parameters.">Compressor</h2>
+		<table>
+			<tr>
+				<td class="parameter"><label for="CompressorSw">On/Off</label></td>
+				<td><input type="checkbox" id="CompressorSw" onClick="SetParameter(this.id, this.checked+0);" /></td>
+				<td class="parameter">Type</td>
+				<td colspan="3">
+					<input type="radio" name="CompressorType" id="CompressorTypeCompressor" onClick="SetParameter(this.name, 0);" /> <label for="CompressorTypeCompressor">Compressor</label>
+					<input type="radio" name="CompressorType" id="CompressorTypeLimiter" 	onClick="SetParameter(this.name, 1);" /> <label for="CompressorTypeLimiter">Limiter</label>
+				</td>
+			</tr>
+			<tr>
+				<td align="center"><input type="range" class="vertical" min="0"   max="100" step="1" id="compressorSustain" 	onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0"   max="100" step="1" id="compressorAttack" 		onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0"   max="100" step="1" id="compressorThreshold" 	onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0"   max="100" step="1" id="compressorRelease" 	onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="-50" max="50"  step="1" id="compressorTone" 		onChange="SetParameter(this.id, this.value-(-50)); 	SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0"   max="100" step="1" id="compressorLevel" 		onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="number" min="0"   max="100" step="1" id="CompressorSustain" 	onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="100" step="1" id="CompressorAttack" 		onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="100" step="1" id="CompressorThreshold" 	onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="100" step="1" id="CompressorRelease" 	onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="-50" max="50"  step="1" id="CompressorTone" 		onChange="SetParameter(this.id, this.value-(-50)); 	SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="100" step="1" id="CompressorLevel" 		onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Sustain<br/>(Comp)</td>
+				<td class="parameter2">Attack<br/>(Comp)</td>
+				<td class="parameter2">Threshold<br/>(Limiter)</td>
+				<td class="parameter2">Release<br/>(Limiter)</td>
+				<td class="parameter2">Tone</td>
+				<td class="parameter2">Level</td>
+			</tr>
+		</table>
+		<br/>
+		<span class="parameter">Random</span>
+		<input type="button" onClick="RandomParameter('Compressor', this.value);" value="Except Type" />
+		<input type="button" onClick="RandomParameter('Compressor', this.value);" value="All" />
+	</div>
+	<script>
+	<!-- 
+		GT10Controller();
+	-->
+	</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--
+	Status:		pronto.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>OD/DS</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetParameter('Odds');" class="getParameters" title="Click to get the parameters.">Overdrive / Distortion</h2>
+		<table>
+			<tr>
+				<td class="parameter"><label for="OddsSw">On/Off</label></td>
+				<td colspan="6"><input type="checkbox" id="OddsSw" onClick="SetParameter(this.id, this.checked+0);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter">Type</td>
+				<td colspan="6">
+					<select id="OddsType" onChange="SetParameter(this.id, this.value);">
+						<option value="0" title="This is a booster with unique characteristics in the midrange. Making the connection before the COSM amp produces sound suitable for solos.">BOOSTER - Mid Boost</option>
+						<option value="1" title="This not only functions as a booster, but also produces a clean tone that has punch even when used alone.">BOOSTER - Clean Boost</option>
+						<option value="2" title="This is a booster that has bright characteristics.">BOOSTER - Treble Bst</option>
+						<option value="3" title="This is a crunch sound of the BOSS BD-2. This produces distortion that faithfully reproduces the nuances of picking.">BLUES - Blues OD</option>
+						<option value="4" title="A lustrous crunch sound with an added element of amp distortion.">BLUES - Crunch</option>
+						<option value="5" title="This is an overdrive sound that provides distortion with a natural feeling.">BLUES - Natural OD</option>
+						<option value="6" title="This is the sound of the BOSS OD-1. This produces sweet, mild distortion.">OD - OD-1</option>
+						<option value="7" title="This models an Ibanez TS-808.">OD - T-Sream</option>
+						<option value="8" title="This is the high-gain overdrive sound of the BOSS OD-2.">OD - Turbo OD</option>
+						<option value="9" title="This is a warm overdrive.">OD - Warm OD</option>
+						<option value="10" title="This gives a basic, traditional distortion sound.">DIST - Distortion</option>
+						<option value="11" title="This is a distortion sound that provides a mild distortion.">DIST - Mild DS</option>
+						<option value="12" title="This distortion sound features a boosted midrange.">DIST - Mid DS</option>
+						<option value="13" title="This models a Proco RAT.">CLASSIC - RAT</option>
+						<option value="14" title="This models a Marshall GUV’ NOR.">CLASSIC - GUV DS</option>
+						<option value="15" title="This models a MXR DISTORTION+.">CLASSIC - DST+</option>
+						<option value="16" title="This is the deep distortion sound of a large high-gain amp.">MODERN - Modern DS</option>
+						<option value="17" title="This is a distortion sound featuring an edge effect.">MODERN - Solid DS</option>
+						<option value="18" title="A fat sound with an added element of a stack amp’s distortion.">MODERN - Stack</option>
+						<option value="19" title="This is distortion sound that is ideal for performances of heavy riffs.">METAL - Loud</option>
+						<option value="20" title="This is the sound of the BOSS MT-2. It produces a wide range of metal sounds, from old style to slash metal.">METAL - Metal Zone</option>
+						<option value="21" title="Produces a distortion sound with both the smoothness of an overdrive along with a deep distortion.">METAL - Lead</option>
+						<option value="22" title="This models a FUZZFACE. It produces a fat fuzz sound.">FUZZ - '60s FUZZ</option>
+						<option value="23" title="This models an ACETONE FUZZ.">FUZZ - Oct FUZZ</option>
+						<option value="24" title="This models an Electro-Harmonix Big Muff π .">FUZZ - MUFF FUZZ</option>
+						<option value="25" title="Custom OD/DS You can customize it however you like to match the sound you want.">Custom</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td align="center"><input type="range" class="vertical" min="0" 	 max="120" step="1"  id="oddsDrive" 	onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="-50" 	 max="50"  step="1"  id="oddsBottom" 	onChange="SetParameter(this.id, this.value-(-50)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="-50" 	 max="50"  step="1"  id="oddsTone" 	  	onChange="SetParameter(this.id, this.value-(-50)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" 	 max="100" step="1"  id="oddsEffectLev" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" 	 max="100" step="1"  id="oddsDirectLev" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"></td>
+				<td align="center"><input type="range" class="vertical" min="0" 	 max="100" step="1"  id="oddsSoloLevel" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="number" min="0"   max="120" step="1" id="OddsDrive" 	onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="-50" max="50"  step="1" id="OddsBottom" 	onChange="SetParameter(this.id, this.value-(-50)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="-50" max="50"  step="1" id="OddsTone" 		onChange="SetParameter(this.id, this.value-(-50)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="100" step="1" id="OddsEffectLev" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0"   max="100" step="1" id="OddsDirectLev" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="checkbox" 							 id="OddsSoloSw" 	onClick="SetParameter(this.id, this.checked+0);"/></td>
+				<td align="center"><input type="number" min="0"   max="100" step="1" id="OddsSoloLevel" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td align="center" class="parameter2">Drive</td>
+				<td align="center" class="parameter2">Bottom</td>
+				<td align="center" class="parameter2">Tone</td>
+				<td align="center" class="parameter2">Effect<br/>Level</td>
+				<td align="center" class="parameter2">Direct<br/>Level</td>
+				<td align="center" class="parameter2"><label for="OddsSoloSw">Solo Sw</label></td>
+				<td align="center" class="parameter2">Solo<br/>Level</td>
+			</tr>
+			<tr><td colspan="7"><hr/></td></tr>
+			<tr>
+				<td colspan="7">
+					<table>
+						<tr>
+							<td class="parameter">Random</td>
+							<td><input type="button" onClick="RandomParameter('Odds', this.value);" value="Eq" /></td>
+							<td><input type="button" onClick="RandomParameter('Odds', this.value);" value="Eq+Drive" /></td>
+							<td><input type="button" onClick="RandomParameter('Odds', this.value);" value="Except Type"	/></td>
+							<td colspan="4"><input type="button" onClick="RandomParameter('Odds', this.value);" value="All" /></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		
+		<table id="OddsCustom">
+			<tr><td colspan="4"><h2>Custom Type</h2></td></tr>
+			<tr>
+				<td class="parameter">Type</td>
+				<td colspan="3">
+					<select id="OddsCustomType" onChange="SetParameter(this.id, this.value);">
+						<option value="0" title="This is the sound of the BOSS OD-1.">OD-1</option>
+						<option value="1" title="This is a overdrive sound with high gain.">OD-2</option>
+						<option value="2" title="This is a crunch sound.">CRUNCH</option>
+						<option value="3" title="This gives a basic, traditional distortion sound.">DS-1</option>
+						<option value="4" title="This creates a heavier distortion sound.">DS-2</option>
+						<option value="5" title="This is a metal sound with a characteristic midrange.">METAL-1</option>
+						<option value="6" title="This gives a heavy metal sound.">METAL-2</option>
+						<option value="7" title="This gives a basic, traditional fuzz sound.">FUZZ</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="value2"><input type="range" class="vertical" min="-50" max="50" step="10" id="oddsCustomBottom" onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+				<td class="value2"><input type="range" class="vertical" min="-50" max="50" step="10" id="oddsCustomTop" 	  onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+				<td class="value2"><input type="range" class="vertical" min="-50" max="50" step="10" id="oddsCustomLow"    onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+				<td class="value2"><input type="range" class="vertical" min="-50" max="50" step="10" id="oddsCustomHigh"   onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td><input type="number" min="-50" max="50" step="10" id="OddsCustomBottom" onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+				<td><input type="number" min="-50" max="50" step="10" id="OddsCustomTop"    onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+				<td><input type="number" min="-50" max="50" step="10" id="OddsCustomLow"    onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+				<td><input type="number" min="-50" max="50" step="10" id="OddsCustomHigh"   onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Bottom</td>
+				<td class="parameter2">Top</td>
+				<td class="parameter2">Low</td>
+				<td class="parameter2">High</td>
+			</tr>
+		</table>
+	</div>
+	<script>
+	<!-- 
+		GT10Controller();
+	-->
+	</script>
+</body>
+</html>

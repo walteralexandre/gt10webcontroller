@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+	Status:		Em testes
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Output Select</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<link rel="stylesheet" type="text/css" href="css/CustomDatatip.css" />
+	<script src="js/CustomDatatip.js"></script>
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetParameter('InputOutput');" class="getParameters" data-tip="<p>Click to get the parameters.</p>">Input/Output</h2>
+		<table>
+			<tr><td colspan="2">
+				<h2>Output</h2>			
+			</td></tr>
+			<tr>
+				<td>
+					<input type="radio" name="OutputSelectMode" id="OutputSelectModePatch" onClick="SetParameter(this.name, 0)" /> <label for="OutputSelectModePatch" data-tip="This uses the patch’s Output Select setting. You can use a different output setting for each individual patch.">Patch</label>
+				</td>
+				<td>
+					<select id="PatchOutputSelect" onChange="SetParameter(this.id, this.value);">
+						<option value="0" data-tip="<p>Set this when connecting a Roland JC-120 guitar amp.</p>">JC-120</option>
+						<option value="1" data-tip="<p>Use this setting when connecting a compact guitar amp.</p>">SMALL AMP</option>
+						<option value="2" data-tip="<p>Set this when connecting to the guitar input for a combo-type guitar amp (combining amp and speakers in a single unit) other than a JC-120. You may find that setting this to JC-120 may produce good results with your guitar amp.</p>">COMBO AMP</option>
+						<option value="3" data-tip="<p>Use this setting when connecting to the guitar input for a stack-type guitar amp (in which the amp and speakers are separated).</p>">STACK AMP</option>
+						<option value="4" data-tip="<p>Set this when connecting to the JC-120’s RETURN.</p>">JC-120 Return</option>
+						<option value="5" data-tip="<p>Set this when connecting to the RETURN on another combo-type amp.</p>">COMBO Return</option>
+						<option value="6" data-tip="<p>Set this when connecting to the RETURN on a stack-type amp. Set STACK Return even when using a power amp for the guitar in combination with a speaker cabinet.</p>">STACK Return</option>
+						<option value="7" data-tip="<p>Use this setting when using headphones or when recording with the GT-10 connected to a multitrack recorder. Use the LINE/PHONES setting if you are using a speaker simulator. When headphones are connected to the PHONES jack, tonal adjustments are applied so the sound is close to that produced by the guitar amp.</p>">LINE/PHONES</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="radio" name="OutputSelectMode" id="OutputSelectModeSystem" onClick="SetParameter(this.name, 1)" /> <label for="OutputSelectModeSystem" data-tip="This uses the system’s Output Select setting. The same output setting is used for all patches.">System</label>
+				</td>
+				<td>
+					<select id="SystemOutputSelect" onChange="SetParameter(this.id, this.value);">
+						<option value="0" data-tip="<p>Set this when connecting a Roland JC-120 guitar amp.</p>">JC-120</option>
+						<option value="1" data-tip="<p>Use this setting when connecting a compact guitar amp.</p>">SMALL AMP</option>
+						<option value="2" data-tip="<p>Set this when connecting to the guitar input for a combo-type guitar amp (combining amp and speakers in a single unit) other than a JC-120. You may find that setting this to JC-120 may produce good results with your guitar amp.</p>">COMBO AMP</option>
+						<option value="3" data-tip="<p>Use this setting when connecting to the guitar input for a stack-type guitar amp (in which the amp and speakers are separated).</p>">STACK AMP</option>
+						<option value="4" data-tip="<p>Set this when connecting to the JC-120’s RETURN.</p>">JC-120 Return</option>
+						<option value="5" data-tip="<p>Set this when connecting to the RETURN on another combo-type amp.</p>">COMBO Return</option>
+						<option value="6" data-tip="<p>Set this when connecting to the RETURN on a stack-type amp. Set STACK Return even when using a power amp for the guitar in combination with a speaker cabinet.</p>">STACK Return</option>
+						<option value="7" data-tip="<p>Use this setting when using headphones or when recording with the GT-10 connected to a multitrack recorder. Use the LINE/PHONES setting if you are using a speaker simulator. When headphones are connected to the PHONES jack, tonal adjustments are applied so the sound is close to that produced by the guitar amp.</p>">LINE/PHONES</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+	
+		<table>
+			<tr><td colspan="9"><h2>Input</h2></td></tr>
+			<tr>
+				<td>
+					<p><input type="radio" id="InputOutputInputSelectGt1" name="InputOutputInputSelect" onClick="SetParameter(this.name, 0)" /> <label for="InputOutputInputSelectGt1">Guitar 1</label></p>
+					<p><input type="radio" id="InputOutputInputSelectGt2" name="InputOutputInputSelect" onClick="SetParameter(this.name, 1)" /> <label for="InputOutputInputSelectGt2">Guitar 2</label></p>
+					<p><input type="radio" id="InputOutputInputSelectGt3" name="InputOutputInputSelect" onClick="SetParameter(this.name, 2)" /> <label for="InputOutputInputSelectGt3">Guitar 3</label></p>
+					<p><input type="radio" id="InputOutputInputSelectUsb" name="InputOutputInputSelect" onClick="SetParameter(this.name, 3)" /> <label for="InputOutputInputSelectUsb">USB In</label>  </p>
+				</td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputInputLev1"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputInputPres1" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputInputLev2"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputInputPres2" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputInputLev3"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputInputPres3" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputUsbInLev3"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputUsbInPres3" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td align="center"><input type="number" id="InputOutputInputLev1"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="InputOutputInputPres1" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="InputOutputInputLev2"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="InputOutputInputPres2" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="InputOutputInputLev3"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="InputOutputInputPres3" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="InputOutputUsbInLev3"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="InputOutputUsbInPres3" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Select</td>
+				<td class="parameter2">Guitar 1<br/>Level</td>
+				<td class="parameter2">Guitar 1<br/>Presence</td>
+				<td class="parameter2">Guitar 2<br/>Level</td>
+				<td class="parameter2">Guitar 2<br/>Presence</td>
+				<td class="parameter2">Guitar 3<br/>Level</td>
+				<td class="parameter2">Guitar 3<br/>Presence</td>
+				<td class="parameter2">USB In<br/>Level</td>
+				<td class="parameter2">USB In<br/>Presence</td>
+			</tr>
+		</table>
+		
+		<br/>
+		<table>
+			<tr><td colspan="5"><h2>Global Equalizer</h2></td></tr>
+			<tr>
+				<td align="center"><input type="range" class="vertical" id="inputOutputGlobalEqLowGain"  min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputGlobalEqMidGain"  min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputGlobalEqMidFreq"  min="0"   max="27" step="1" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputGlobalEqMidQ"     min="0"   max="5"  step="1" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputGlobalEqHighGain" min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="number" id="InputOutputGlobalEqLowGain"  min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="InputOutputGlobalEqMidGain"  min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+				<td align="center"><select id="InputOutputGlobalEqMidFreq" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);">
+					<option value="0">20.0Hz</option>
+					<option value="1">25.0Hz</option>
+					<option value="2">31.0Hz</option>
+					<option value="3">40.0Hz</option>
+					<option value="4">50.0Hz</option>
+					<option value="5">63.0Hz</option>
+					<option value="6">80.0Hz</option>
+					<option value="7">100Hz</option>
+					<option value="8">125Hz</option>
+					<option value="9">160Hz</option>
+					<option value="10">200Hz</option>
+					<option value="11">250Hz</option>
+					<option value="12">315Hz</option>
+					<option value="13">400Hz</option>
+					<option value="14">500Hz</option>
+					<option value="15">630Hz</option>
+					<option value="16">800Hz</option>
+					<option value="17">1.00KHz</option>
+					<option value="18">1.25KHz</option>
+					<option value="19">1.60KHz</option>
+					<option value="20">2.00KHz</option>
+					<option value="21">2.50KHz</option>
+					<option value="22">3.15KHz</option>
+					<option value="23">4.00KHz</option>
+					<option value="24">5.00KHz</option>
+					<option value="25">6.30KHz</option>
+					<option value="26">8.00KHz</option>
+					<option value="27">10.0KHz</option>
+				</select></td>
+				<td align="center"><select id="InputOutputGlobalEqMidQ"    onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);">
+					<option value="0">0.5</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">4</option>
+					<option value="4">8</option>
+					<option value="5">16</option>
+				</select></td>
+				<td align="center"><input type="number" id="InputOutputGlobalEqHighGain" min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Low Gain</td>
+				<td class="parameter2">Mid Gain</td>
+				<td class="parameter2">Mid Freq</td>
+				<td class="parameter2">Mid Q</td>
+				<td class="parameter2">High Gain</td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr><td colspan="5"><h2>Total</h2></td></tr>
+			<tr>
+				<td align="center"><input type="range" class="vertical" id="inputOutputNsThreshold"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value);   SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputRevLevel"     min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputUsbDgtOutLev" min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="inputOutputUsbMixLev"    min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+				<td>
+					<p><input type="radio" id="InputOutputMainOutLev10" name="InputOutputMainOutLev" onClick="SetParameter(this.name, 0)" /> <label for="InputOutputMainOutLev10">-10dB</label></p>
+					<p><input type="radio" id="InputOutputMainOutLev4"  name="InputOutputMainOutLev" onClick="SetParameter(this.name, 1)" /> <label for="InputOutputMainOutLev4">+4dB</label></p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center"><input type="number" id="InputOutputNsThreshold"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value);   SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="InputOutputRevLevel"     min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="InputOutputUsbDgtOutLev" min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" id="InputOutputUsbMixLev"    min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="parameter2">NS<br/>Threshold</td>
+				<td class="parameter2">Reverb<br/>Level</td>
+				<td class="parameter2">USB DGT/<br/>OUT Level</td>
+				<td class="parameter2">USB Mix<br/>Level</td>
+				<td class="parameter2">Main Out<br/>Level</td>
+			</tr>
+		</table>
+	</div>
+	<script>
+	<!-- 
+		GT10Controller();
+	-->
+	</script>
+</body>
+</html>

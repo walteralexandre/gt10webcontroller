@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+	Status:		pronto.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Master</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetParameter('Master');" class="getParameters" title="Click to get the parameters.">Master</h2>
+		<table>
+			<tr>
+				<td align="center"><input type="range" class="vertical" id="masterPatchLevel" 	min="0"   max="200" step="2"   onChange="SetParameter(this.id, this.value/2); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="masterLow" 			min="-12" max="12"  step="1"   onChange="SetParameter(this.id, this.value-(-12));   SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="masterMidG" 		min="-12" max="12"  step="1"   onChange="SetParameter(this.id, this.value-(-12));   SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="masterMidQ" 		min="0"   max="5"   step="1"   onChange="SetParameter(this.id, this.value);   		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="masterMidF" 		min="0"   max="27"  step="1"   onChange="SetParameter(this.id, this.value);   		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="masterHigh" 		min="-12" max="12"  step="1"   onChange="SetParameter(this.id, this.value-(-12));   SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="masterBPM" 			min="40"  max="250" step="1"   onChange="SetParameter(this.id, this.value);   		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" id="masterKey" 			min="0"   max="11"  step="1"   onChange="SetParameter(this.id, this.value);   		SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="number" min="0"   max="200" step="2" id="MasterPatchLevel" 	onChange="SetParameter(this.id, this.value/2); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="-12" max="12"  step="1" id="MasterLow" 		onChange="SetParameter(this.id, this.value-(-12)); 	SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="-12" max="12"  step="1" id="MasterMidG" 		onChange="SetParameter(this.id, this.value-(-12)); 	SetValueRangeNumber(this);" /></td>
+				<td align="center"><select id="MasterMidQ" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);">
+					<option value="0">0.5</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">4</option>
+					<option value="4">8</option>
+					<option value="5">16</option>
+				</select></td>
+				<td align="center"><select id="MasterMidF" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);">
+						<option value="0">20.0Hz</option>
+						<option value="1">25.0Hz</option>
+						<option value="2">31.0Hz</option>
+						<option value="3">40.0Hz</option>
+						<option value="4">50.0Hz</option>
+						<option value="5">63.0Hz</option>
+						<option value="6">80.0Hz</option>
+						<option value="7">100Hz</option>
+						<option value="8">125Hz</option>
+						<option value="9">160Hz</option>
+						<option value="10">200Hz</option>
+						<option value="11">250Hz</option>
+						<option value="12">315Hz</option>
+						<option value="13">400Hz</option>
+						<option value="14">500Hz</option>
+						<option value="15">630Hz</option>
+						<option value="16">800Hz</option>
+						<option value="17">1.00KHz</option>
+						<option value="18">1.25KHz</option>
+						<option value="19">1.60KHz</option>
+						<option value="20">2.00KHz</option>
+						<option value="21">2.50KHz</option>
+						<option value="22">3.15KHz</option>
+						<option value="23">4.00KHz</option>
+						<option value="24">5.00KHz</option>
+						<option value="25">6.30KHz</option>
+						<option value="26">8.00KHz</option>
+						<option value="27">10.0KHz</option>
+				</select></td>
+				<td align="center"><input type="number" min="-12" max="12"  step="1" id="MasterHigh" 		onChange="SetParameter(this.id, this.value-(-12)); 	SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="40"  max="250" step="1" id="MasterBPM" 		onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+				<td align="center"><select id="MasterKey" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);">
+					<option value="0">C (Am )</option>
+					<option value="1">Db(Bbm)</option>
+					<option value="2">D (Bm )</option>
+					<option value="3">Eb(Cm )</option>
+					<option value="4">E (C#m)</option>
+					<option value="5">F (Dm )</option>
+					<option value="6">F#(D#m)</option>
+					<option value="7">G (Em )</option>
+					<option value="8">Ab(Fm )</option>
+					<option value="9">A (F#m)</option>
+					<option value="10">Bb(Gm )</option>
+					<option value="11">B (G#m)</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Patch<br/>Level</td>
+				<td class="parameter2">Master<br/>Low</td>
+				<td class="parameter2">Master<br/>Mid G</td>
+				<td class="parameter2">Master<br/>Mid Q</td>
+				<td class="parameter2">Master<br/>Mid f</td>
+				<td class="parameter2">Master<br/>High</td>
+				<td class="parameter2">Master<br/>BPM</td>
+				<td class="parameter2">Master<br/>Key</td>
+			</tr>
+		</table>
+		<br/>
+		<span class="parameter">Random</span>
+		<input type="button" onClick="RandomParameter('Master', this.value);" value="Eq" />
+	</div>
+	<script>
+	<!-- 
+		GT10Controller();
+	-->
+	</script>
+</body>
+</html>

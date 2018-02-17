@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<!-- 
+	Status: 	pronto.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Preamp</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel="stylesheet" type="text/css" href="css/CustomDatatip.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/CustomDatatip.js"></script>
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit" style="width:1115px;">
+		<h2>Preamp</h2>
+		<table>
+			<tr><td colspan="5"><h2 onClick="GetParameter('Preamp');" class="getParameters" title="Click to get the parameters.">Preamps A &amp; B</h2></td></tr>
+			<tr>
+				<td class="parameter"><label for="PreampSw">On/Off</label></td>
+				<td colspan="4"><input type="checkbox" id="PreampSw" onClick="SetParameter(this.id, 0+this.checked); "/></td>
+			</tr>
+			<tr>
+				<td class="parameter">Channel Mode</td>
+				<td>
+					<input type="radio" id="PreampChModeSingle" name="PreampChMode" onClick="SetParameter(this.name, 0);" />
+					<label for="PreampChModeSingle">Single</label>
+				</td>
+				<td>
+					<input type="radio" id="PreampChModeDualMono" name="PreampChMode" onClick="SetParameter(this.name, 1);" />
+					<label for="PreampChModeDualMono">Dual Mono</label>
+				</td>
+				<td>
+					<input type="radio" id="PreampChModeDualLR" name="PreampChMode" onClick="SetParameter(this.name, 2);" />
+					<label for="PreampChModeDualLR">Dual L/R</label>
+				</td>
+				<td>
+					<input type="radio" id="PreampChModeDynamic" name="PreampChMode" onClick="SetParameter(this.name, 3);" />
+					<label for="PreampChModeDynamic">Dynamic</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="parameter">Channel Select</td>
+				<td>
+					<input type="radio" id="PreampChSelectA" name="PreampChSelect" onClick="SetParameter(this.name, 0);" />
+					<label for="PreampChSelectA">Channel A</label>
+				</td>
+				<td colspan="3">
+					<input type="radio" id="PreampChSelectB" name="PreampChSelect" onClick="SetParameter(this.name, 1);" />
+					<label for="PreampChSelectB">Channel B</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="parameter">Channel Delay Time</td>
+				<td>
+					<input type="number" id="PreampChDlyTim" min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" />ms
+				</td>
+				<td><input type="range" id="preampChDlyTim" min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td colspan="2"> *Only for Ch. Mode Dual</td>
+			</tr>
+			<tr>
+				<td class="parameter">Dynamic Sensitivity</td>
+				<td>
+					<input type="number" id="PreampDynaSens" min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" />
+				</td>
+				<td><input type="range" id="preampDynaSens" min="0" max="100" step="1" value="" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td colspan="2"> *Only for Ch. Mode Dynamic</td>
+			</tr>
+		</table>
+		
+		<br/>
+		
+		<table>
+			<tr><td colspan="10"><h2 onClick="GetParameter('PreampA');" class="getParameters" title="Click to get the parameters.">Preamp A</h2></td></tr>
+			<tr>
+				<td class="parameter">Type</td>
+				<td colspan="9">
+					<select id="PreampAType" onChange="SetParameter(this.id, this.value);">
+						<option value="0"  title="This is a clean sound that is smooth and warm.">JC CLEAN - BOSS Clean</option>
+						<option value="1"  title="This is the sound of the Roland JC-120.">JC CLEAN - JC-120</option>
+						<option value="2"  title="This is a sound suited to jazz.">JC CLEAN - Jazz Combo</option>
+						<option value="3"  title="This is a sound with flat response. Good for acoustic guitar">JC CLEAN - Full Range</option>
+						<option value="4"  title="This models a Fender Twin Reverb.">TW CLEAN - Clean TWIN</option>
+						<option value="5"  title="This models a Fender Pro Reverb.">TW CLEAN - Pro Crunch</option>
+						<option value="6"  title="This models a Fender Bassman 4 x 10” Combo.">TW CLEAN - Tweed</option>
+						<option value="7"  title="This models a Fender Deluxe Reverb.">TW CLEAN - DELUX Crnch</option>
+						<option value="8"  title="This is a crunch sound that can faithfully reproduce the nuances of picking.">CRUNCH - BOSS Crunch</option>
+						<option value="9"  title="This is a sound suited to blues.">CRUNCH - Blues</option>
+						<option value="10" title="This is a crunch sound with wild distortion.">CRUNCH - Wild Crunch</option>
+						<option value="11" title="This is a crunch sound with high gain.">CRUNCH - StackCrunch</option>
+						<option value="12" title="This models the drive sound of a VOX AC-30TB. This is a sound that it suited to sixtiesstyle British rock.">COMBO - VO Drive</option>
+						<option value="13" title="This models the lead sound of the VOX AC-30TB.">COMBO - VO Lead</option>
+						<option value="14" title="This models the clean sound of the VOX AC-30TB.">COMBO - VO Clean</option>
+						<option value="15" title="This models the sound input to left input on a Matchless D/C-30. A simulation of the latest tube amp widely used in styles from blues and rock.">MATCH - MATCH Drive</option>
+						<option value="16" title="This models the sound of a Matchless with a modified high gain.">MATCH - Fat MATCH</option>
+						<option value="17" title="This models the sound input to right input on a Matchless D/C-30.">MATCH - MATCH Lead</option>
+						<option value="18" title="This models the lead sound of the MESA/Boogie combo amp. The sound of a tube amp typical of the late ‘70s to ‘80s.">BG LEAD - BG Lead</option>
+						<option value="19" title="This models a MESA/Boogie with TREBLE SHIFT SW on.">BG LEAD - BG Drive</option>
+						<option value="20" title="This models the rhythm channel of a MESA/Boogie.">BG LEAD - BG Rhythm</option>
+						<option value="21" title="This models the sound input to Input I on a Marshall 1959. This is a trebly sound suited to hard rock.">MS CLASSIC - MS1959 I</option>
+						<option value="22" title="The sound of connecting inputs I and II of the guitar amp in parallel, creating a sound with a stronger low end than I.">MS CLASSIC - MS1959 I+II</option>
+						<option value="23" title="This models the sound of a Marshall with a modified midrange boost.">MS MODERN - MS HiGain</option>
+						<option value="24" title="This is a Marshall sound that's been tweaked for metal sound.">MS MODERN - MS Scoop</option>
+						<option value="25" title="Models the sound of the Channel 2 VINTAGE Mode on the MESA/Boogie DUAL Rectifier.">R-FIER - R-FIER Vnt</option>
+						<option value="26" title="Models the sound of the Channel 2 MODERN Mode on the MESA/Boogie DUAL Rectifier.">R-FIER - R-FIER Mdn</option>
+						<option value="27" title="Models the sound of the Channel 1 CLEAN Mode on the MESA/Boogie DUAL Rectifier.">R-FIER - R-FIER Cln</option>
+						<option value="28" title="This models a Hughes & Kettner Triamp AMP3.">T-AMP - T-AMP Lead</option>
+						<option value="29" title="This models a Hughes & Kettner Triamp AMP2.">T-AMP - T-AMP Crnch</option>
+						<option value="30" title="This models a Hughes & Kettner Triamp AMP1.">T-AMP - T-AMP Clean</option>
+						<option value="31" title="This is a drive sound producing awesome distortion.">HI-GAIN - BOSS Drive</option>
+						<option value="32" title="This models a Soldano SLO-100. This is the typical sound of the eighties.">HI-GAIN - SLDN</option>
+						<option value="33" title="This is a lead sound with high gain.">HI-GAIN - LeadStack</option>
+						<option value="34" title="A powerful lead sound featuring extreme distortion.">HI-GAIN - Heavy Lead</option>
+						<option value="35" title="This is a metal sound suited to heavy riffs.">METAL - BOSS Metal</option>
+						<option value="36" title="This models the lead channel of a Peavey EVH 5150.">METAL - 5150 Drive</option>
+						<option value="37" title="This is a lead sound suited to metal.">METAL - Metal Lead</option>
+						<option value="38" title="This is a sharp sound suited for lead play.">METAL - Edge Lead</option>
+						<option value="39" title="This is a custom preamp. You can customize it however you like to match the sound you want.">Custom</option>
+						<option value="40" title="This switches off the preamp for the channel selected using Ch.Select.">Through</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p><input type="radio" name="PreampAGainSw" id="PreampAGainSwLow" 	 onClick="SetParameter(this.name, 0);" /> <label for="PreampAGainSwLow">Low</label></p>
+					<p><input type="radio" name="PreampAGainSw" id="PreampAGainSwMiddle" onClick="SetParameter(this.name, 1);" /> <label for="PreampAGainSwMiddle">Middle</label></p>
+					<p><input type="radio" name="PreampAGainSw" id="PreampAGainSwHigh" 	 onClick="SetParameter(this.name, 2);" /> <label for="PreampAGainSwHigh">High</label></p>
+				</td>
+				<td align="center"><input type="range" class="vertical" min="0" max="120" step="1" value="" id="preampAGain" 	 onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampABass" 	 onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampAMiddle" 	 onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampATreble" 	 onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampAPresence" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampALevel" 	 onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampASoloLevel" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td align="center"></td>
+				<td align="center"><input type="number" min="0" max="120" step="1" value="" id="PreampAGain" 	  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="checkbox"                          			id="PreampABright" 	  onClick="SetParameter(this.id, this.checked+0);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampABass" 	  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampAMiddle" 	  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampATreble" 	  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampAPresence"  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampALevel" 	  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="checkbox"                          			id="PreampASoloSw" 	  onClick="SetParameter(this.id, this.checked+0);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampASoloLevel" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Gain Sw</td>
+				<td class="parameter2">Gain</td>
+				<td class="parameter2"><label for="PreampABright" title="The BRIGHT parameter setting is only partially available with some JC CLEAN, TW CLEAN, CRUNCH, or BG LEAD settings in Preamp Type.">Bright</label></td>
+				<td class="parameter2">Bass</td>
+				<td class="parameter2">Middle</td>
+				<td class="parameter2">Treble</td>
+				<td class="parameter2">Presence</td>
+				<td class="parameter2">Level</td>
+				<td class="parameter2"><label for="PreampASoloSw">Solo Sw</label></td>
+				<td class="parameter2">Solo Level</td>
+			</tr>
+			<tr><td colspan="10"><hr/></td></tr>
+			<tr>
+				<td colspan="2" align="center">
+					<select id="SpeakerASpType" onChange="SetParameter(this.id, this.value);">
+						<option value="0">Off</option>
+						<option value="1">Original</option>
+						<option value="2">1x8</option>
+						<option value="3">1x10</option>
+						<option value="4">1x12</option>
+						<option value="5">2x12</option>
+						<option value="6">4x10</option>
+						<option value="7">4x12</option>
+						<option value="8">8x12</option>
+						<option value="9">Custom</option>
+					</select>
+				</td>
+				<td colspan="2" align="center">
+					<select id="SpeakerAMicType" onChange="SetParameter(this.id, this.value);">
+						<option value="0" title="This is the sound of the SHURE SM-57. General dynamic mic used for instruments and vocals. Optimal for use in miking guitar amps.">DYN57</option>
+						<option value="1" title="This is the sound of the SENNHEISER MD-421. Dynamic mic with extended low end.">DYN421</option>
+						<option value="2" title="This is the sound of the AKG C451B. Small condenser mic for use with instruments.">CND451</option>
+						<option value="3" title="This is the sound of the NEUMANN U87. Condenser mic with flat response.">CND87</option>
+						<option value="4" title="Simulates a mic with perfectly flat response. Produces a sonic image close to that of listening to the sound directly from the speakers (on site).">FLAT</option>
+					</select>
+				</td>
+				<td></td>
+				<td>
+					<p><input type="radio" name="SpeakerAMicDis" id="SpeakerAMicDisOff" onClick="SetParameter(this.name, 0);" /><label for="SpeakerAMicDisOff">Off Mic</label></p>
+					<p><input type="radio" name="SpeakerAMicDis" id="SpeakerAMicDisOn"  onClick="SetParameter(this.name, 1);" /><label for="SpeakerAMicDisOn">On Mic</label></p>
+				</td>
+				<td align="center"><input type="range" class="vertical" min="0" max="10" step="1" value="" id="speakerAMicPos" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="speakerAMicLevel" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="speakerADirectLev" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="6"></td>
+				<td align="center"><input type="number" min="0" max="10" step="0" value="" id="SpeakerAMicPos" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="0" value="" id="SpeakerAMicLevel" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="0" value="" id="SpeakerADirectLev" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="parameter2" colspan="2">Speaker</td>
+				<td class="parameter2" colspan="2">Mic<br/>Type</td>
+				<td class="parameter2"></td>
+				<td class="parameter2">Mic<br/>Dist</td>
+				<td class="parameter2">Mic<br/>Pos</td>
+				<td class="parameter2">Mic<br/>Level</td>
+				<td class="parameter2">Direct<br/>Level</td>
+				<td></td>
+			</tr>
+			<tr><td colspan="10"><hr/></td></tr>
+			<tr>
+				<td class="parameter">Random</td>
+				<td colspan="9">
+					<input type="button" value="Eq" 		onClick="RandomParameter('PreampA', this.value);" />
+					<input type="button" value="Eq+Gain"    onClick="RandomParameter('PreampA', this.value);" />
+					<input type="button" value="Except Mic" onClick="RandomParameter('PreampA', this.value);" />
+					<input type="button" value="All" 	    onClick="RandomParameter('PreampA', this.value);" />
+					<input type="button" value="Cust. Eq"   onClick="RandomParameter('PreampCustomA', this.value);" />
+					<input type="button" value="Cust. All"  onClick="RandomParameter('PreampCustomA', this.value);" />
+					<input type="button" value="Cust. Spk"  onClick="RandomParameter('SpeakerCustomA', this.value);" />
+					
+				</td>
+			</tr>
+		</table>
+
+		<div style="display:inline-table;">
+			<table id="PreampCustomA">
+				<tr><td colspan="7"><h2>Preamp A Custom</h2></td></tr>
+				<tr>
+					<td class="parameter">Type</td>
+					<td colspan="6">
+						<select id="PreampCustomAType" onChange="SetParameter(this.id, this.value);">
+							<option value="0" title="This is the sound of the Roland JC-120.">JC Clean</option>
+							<option value="1" title="This models a Fender Twin Reverb.">TW Clean</option>
+							<option value="2" title="This is a crunch sound that can produce natural distortion.">Crunch</option>
+							<option value="3" title="This models the drive sound of a VOX AC-30TB.">VO Drive</option>
+							<option value="4" title="This models the lead sound of the MESA/ Boogie combo amp.">BG Lead</option>
+							<option value="5" title="This models the sound of a Marshall with a modified midrange boost.">MS HiGain</option>
+							<option value="6" title="Models the sound of the Channel 2 MODERN Mode on the MESA/Boogie DUAL Rectifier.">Modern Stk</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomABottom"    onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomAEdge"      onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomABassFreq"  onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomATreFreq"   onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomAPreampLow" onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomAPreampHi"  onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+				</tr>
+				<tr>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomABottom"    onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomAEdge"      onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomABassFreq"  onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomATreFreq"   onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomAPreampLow" onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomAPreampHi"  onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+				</tr>
+				<tr>
+					<td align="center" class="parameter2">Bottom</td>
+					<td align="center" class="parameter2">Edge</td>
+					<td align="center" class="parameter2">Bass Freq</td>
+					<td align="center" class="parameter2">Tre Freq</td>
+					<td align="center" class="parameter2">Preamp Low</td>
+					<td align="center" class="parameter2">Preamp Hi</td>
+				</tr>
+			</table>
+			<br/>
+			<table id="SpeakerCustomA">
+				<tr><td colspan="5"><h2>Speaker A Custom</h2></td></tr>
+				<tr>
+					<td align="center"><input type="range" class="vertical" min="5"   max="15" step="1" value="" id="speakerCustomASpSize"    onChange="SetParameter(this.id, this.value-5);  SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-10" max="10" step="1" value="" id="speakerCustomAColorLow"  onChange="SetParameter(this.id, this.value-(-10)); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-10" max="10" step="1" value="" id="speakerCustomAColorHigh" onChange="SetParameter(this.id, this.value-(-10)); SetValueRangeNumber(this);" /></td>
+					<td>
+						<input type="radio" name="SpeakerCustomASpNumber" id="SpeakerCustomASpNumberX1" onClick="SetParameter(this.name,0);" /><label for="SpeakerCustomASpNumberX1">X1</label><br/>
+						<input type="radio" name="SpeakerCustomASpNumber" id="SpeakerCustomASpNumberX2" onClick="SetParameter(this.name,1);" /><label for="SpeakerCustomASpNumberX2">X2</label><br/>
+						<input type="radio" name="SpeakerCustomASpNumber" id="SpeakerCustomASpNumberX4" onClick="SetParameter(this.name,2);" /><label for="SpeakerCustomASpNumberX4">X4</label><br/>
+						<input type="radio" name="SpeakerCustomASpNumber" id="SpeakerCustomASpNumberX8" onClick="SetParameter(this.name,3);" /><label for="SpeakerCustomASpNumberX8">X8</label><br/>
+					</td>
+					<td>
+						<input type="radio" name="SpeakerCustomACabinet" id="SpeakerCustomACabinetOpen"  onClick="SetParameter(this.name,0);" /><label for="SpeakerCustomACabinetOpen">Open</label> <br/>
+						<input type="radio" name="SpeakerCustomACabinet" id="SpeakerCustomACabinetClose" onClick="SetParameter(this.name,1);" /><label for="SpeakerCustomACabinetClose">Close</label><br/>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><input type="number" id="SpeakerCustomASpSize"    min="5" max="15" step="1"   onChange="SetParameter(this.id, this.value-5); SetValueRangeNumber(this);" />&quot;</td>
+					<td align="center"><input type="number" id="SpeakerCustomAColorLow"  min="-10" max="10" step="1" onChange="SetParameter(this.id, this.value-(-10)); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" id="SpeakerCustomAColorHigh" min="-10" max="10" step="1" onChange="SetParameter(this.id, this.value-(-10)); SetValueRangeNumber(this);" /></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="parameter2">Sp<br/>Size</td>
+					<td class="parameter2">Color<br/>Low</td>
+					<td class="parameter2">Color<br/>High</td>
+					<td class="parameter2">Sp<br/>Number</td>
+					<td class="parameter2">Cabinet</td>
+				</tr>
+			</table>
+		</div>
+		
+		<br />
+		
+		<table>
+			<tr><td colspan="10"><h2 onClick="GetParameter('PreampB');" class="getParameters" title="Click to get the parameters.">Preamp B</h2></td></tr>
+			<tr>
+				<td class="parameter">Type</td>
+				<td colspan="9">
+					<select id="PreampBType" onChange="SetParameter(this.id, this.value);">
+						<option value="0"  title="This is a clean sound that is smooth and warm.">JC CLEAN - BOSS Clean</option>
+						<option value="1"  title="This is the sound of the Roland JC-120.">JC CLEAN - JC-120</option>
+						<option value="2"  title="This is a sound suited to jazz.">JC CLEAN - Jazz Combo</option>
+						<option value="3"  title="This is a sound with flat response. Good for acoustic guitar">JC CLEAN - Full Range</option>
+						<option value="4"  title="This models a Fender Twin Reverb.">TW CLEAN - Clean TWIN</option>
+						<option value="5"  title="This models a Fender Pro Reverb.">TW CLEAN - Pro Crunch</option>
+						<option value="6"  title="This models a Fender Bassman 4 x 10” Combo.">TW CLEAN - Tweed</option>
+						<option value="7"  title="This models a Fender Deluxe Reverb.">TW CLEAN - DELUX Crnch</option>
+						<option value="8"  title="This is a crunch sound that can faithfully reproduce the nuances of picking.">CRUNCH - BOSS Crunch</option>
+						<option value="9"  title="This is a sound suited to blues.">CRUNCH - Blues</option>
+						<option value="10" title="This is a crunch sound with wild distortion.">CRUNCH - Wild Crunch</option>
+						<option value="11" title="This is a crunch sound with high gain.">CRUNCH - StackCrunch</option>
+						<option value="12" title="This models the drive sound of a VOX AC-30TB. This is a sound that it suited to sixtiesstyle British rock.">COMBO - VO Drive</option>
+						<option value="13" title="This models the lead sound of the VOX AC-30TB.">COMBO - VO Lead</option>
+						<option value="14" title="This models the clean sound of the VOX AC-30TB.">COMBO - VO Clean</option>
+						<option value="15" title="This models the sound input to left input on a Matchless D/C-30. A simulation of the latest tube amp widely used in styles from blues and rock.">MATCH - MATCH Drive</option>
+						<option value="16" title="This models the sound of a Matchless with a modified high gain.">MATCH - Fat MATCH</option>
+						<option value="17" title="This models the sound input to right input on a Matchless D/C-30.">MATCH - MATCH Lead</option>
+						<option value="18" title="This models the lead sound of the MESA/Boogie combo amp. The sound of a tube amp typical of the late ‘70s to ‘80s.">BG LEAD - BG Lead</option>
+						<option value="19" title="This models a MESA/Boogie with TREBLE SHIFT SW on.">BG LEAD - BG Drive</option>
+						<option value="20" title="This models the rhythm channel of a MESA/Boogie.">BG LEAD - BG Rhythm</option>
+						<option value="21" title="This models the sound input to Input I on a Marshall 1959. This is a trebly sound suited to hard rock.">MS CLASSIC - MS1959 I</option>
+						<option value="22" title="The sound of connecting inputs I and II of the guitar amp in parallel, creating a sound with a stronger low end than I.">MS CLASSIC - MS1959 I+II</option>
+						<option value="23" title="This models the sound of a Marshall with a modified midrange boost.">MS MODERN - MS HiGain</option>
+						<option value="24" title="This is a Marshall sound that's been tweaked for metal sound.">MS MODERN - MS Scoop</option>
+						<option value="25" title="Models the sound of the Channel 2 VINTAGE Mode on the MESA/Boogie DUAL Rectifier.">R-FIER - R-FIER Vnt</option>
+						<option value="26" title="Models the sound of the Channel 2 MODERN Mode on the MESA/Boogie DUAL Rectifier.">R-FIER - R-FIER Mdn</option>
+						<option value="27" title="Models the sound of the Channel 1 CLEAN Mode on the MESA/Boogie DUAL Rectifier.">R-FIER - R-FIER Cln</option>
+						<option value="28" title="This models a Hughes & Kettner Triamp AMP3.">T-AMP - T-AMP Lead</option>
+						<option value="29" title="This models a Hughes & Kettner Triamp AMP2.">T-AMP - T-AMP Crnch</option>
+						<option value="30" title="This models a Hughes & Kettner Triamp AMP1.">T-AMP - T-AMP Clean</option>
+						<option value="31" title="This is a drive sound producing awesome distortion.">HI-GAIN - BOSS Drive</option>
+						<option value="32" title="This models a Soldano SLO-100. This is the typical sound of the eighties.">HI-GAIN - SLDN</option>
+						<option value="33" title="This is a lead sound with high gain.">HI-GAIN - LeadStack</option>
+						<option value="34" title="A powerful lead sound featuring extreme distortion.">HI-GAIN - Heavy Lead</option>
+						<option value="35" title="This is a metal sound suited to heavy riffs.">METAL - BOSS Metal</option>
+						<option value="36" title="This models the lead channel of a Peavey EVH 5150.">METAL - 5150 Drive</option>
+						<option value="37" title="This is a lead sound suited to metal.">METAL - Metal Lead</option>
+						<option value="38" title="This is a sharp sound suited for lead play.">METAL - Edge Lead</option>
+						<option value="39" title="This is a custom preamp. You can customize it however you like to match the sound you want.">Custom</option>
+						<option value="40" title="This switches off the preamp for the channel selected using Ch.Select.">Through</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p><input type="radio" name="PreampBGainSw" id="PreampBGainSwLow" 	 onClick="SetParameter(this.name, 0);" /> <label for="PreampBGainSwLow">Low</label></p>
+					<p><input type="radio" name="PreampBGainSw" id="PreampBGainSwMiddle" onClick="SetParameter(this.name, 1);" /> <label for="PreampBGainSwMiddle">Middle</label></p>
+					<p><input type="radio" name="PreampBGainSw" id="PreampBGainSwHigh" 	 onClick="SetParameter(this.name, 2);" /> <label for="PreampBGainSwHigh">High</label></p>
+				</td>
+				<td align="center"><input type="range" class="vertical" min="0" max="120" step="1" value="" id="preampBGain" 	 onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampBBass" 	 onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampBMiddle" 	 onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampBTreble" 	 onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampBPresence" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampBLevel" 	 onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="preampBSoloLevel" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td align="center"></td>
+				<td align="center"><input type="number" min="0" max="120" step="1" value="" id="PreampBGain" 	  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="checkbox"                          			id="PreampBBright" 	  onClick="SetParameter(this.id, this.checked+0);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampBBass" 	  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampBMiddle" 	  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampBTreble" 	  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampBPresence"  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampBLevel" 	  onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="checkbox"                          			id="PreampBSoloSw" 	  onClick="SetParameter(this.id, this.checked+0);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="1" value="" id="PreampBSoloLevel" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Gain Sw</td>
+				<td class="parameter2">Gain</td>
+				<td class="parameter2"><label for="PreampBBright" title="The BRIGHT parameter setting is only partially available with some JC CLEAN, TW CLEAN, CRUNCH, or BG LEAD settings in Preamp Type.">Bright</label></td>
+				<td class="parameter2">Bass</td>
+				<td class="parameter2">Middle</td>
+				<td class="parameter2">Treble</td>
+				<td class="parameter2">Presence</td>
+				<td class="parameter2">Level</td>
+				<td class="parameter2"><label for="PreampBSoloSw">Solo Sw</label></td>
+				<td class="parameter2">Solo Level</td>
+			</tr>
+			<tr><td colspan="10"><hr/></td></tr>
+			<tr>
+				<td colspan="2" align="center">
+					<select id="SpeakerBSpType" onChange="SetParameter(this.id, this.value);">
+						<option value="0">Off</option>
+						<option value="1">Original</option>
+						<option value="2">1x8</option>
+						<option value="3">1x10</option>
+						<option value="4">1x12</option>
+						<option value="5">2x12</option>
+						<option value="6">4x10</option>
+						<option value="7">4x12</option>
+						<option value="8">8x12</option>
+						<option value="9">Custom</option>
+					</select>
+				</td>
+				<td colspan="2" align="center">
+					<select id="SpeakerBMicType" onChange="SetParameter(this.id, this.value);">
+						<option value="0" title="This is the sound of the SHURE SM-57. General dynamic mic used for instruments and vocals. Optimal for use in miking guitar amps.">DYN57</option>
+						<option value="1" title="This is the sound of the SENNHEISER MD-421. Dynamic mic with extended low end.">DYN421</option>
+						<option value="2" title="This is the sound of the AKG C451B. Small condenser mic for use with instruments.">CND451</option>
+						<option value="3" title="This is the sound of the NEUMANN U87. Condenser mic with flat response.">CND87</option>
+						<option value="4" title="Simulates a mic with perfectly flat response. Produces a sonic image close to that of listening to the sound directly from the speakers (on site).">FLAT</option>
+					</select>
+				</td>
+				<td></td>
+				<td>
+					<p><input type="radio" name="SpeakerBMicDis" id="SpeakerBMicDisOff" onClick="SetParameter(this.name, 0);" /><label for="SpeakerBMicDisOff">Off Mic</label></p>
+					<p><input type="radio" name="SpeakerBMicDis" id="SpeakerBMicDisOn"  onClick="SetParameter(this.name, 1);" /><label for="SpeakerBMicDisOn">On Mic</label></p>
+				</td>
+				<td align="center"><input type="range" class="vertical" min="0" max="10" step="1" value="" id="speakerBMicPos" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="speakerBMicLevel" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="100" step="1" value="" id="speakerBDirectLev" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="6"></td>
+				<td align="center"><input type="number" min="0" max="10" step="0" value="" id="SpeakerBMicPos" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="0" value="" id="SpeakerBMicLevel" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="100" step="0" value="" id="SpeakerBDirectLev" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="parameter2" colspan="2">Speaker</td>
+				<td class="parameter2" colspan="2">Mic<br/>Type</td>
+				<td class="parameter2"></td>
+				<td class="parameter2">Mic<br/>Dist</td>
+				<td class="parameter2">Mic<br/>Pos</td>
+				<td class="parameter2">Mic<br/>Level</td>
+				<td class="parameter2">Direct<br/>Level</td>
+				<td></td>
+			</tr>
+			<tr><td colspan="10"><hr/></td></tr>
+			<tr>
+				<td class="parameter">Random</td>
+				<td colspan="9">
+					<input type="button" value="Eq" 		onClick="RandomParameter('PreampB', this.value);" />
+					<input type="button" value="Eq+Gain"    onClick="RandomParameter('PreampB', this.value);" />
+					<input type="button" value="Except Mic" onClick="RandomParameter('PreampB', this.value);" />
+					<input type="button" value="All" 	    onClick="RandomParameter('PreampB', this.value);" />
+					<input type="button" value="Cust. Eq"   onClick="RandomParameter('PreampCustomB', this.value);" />
+					<input type="button" value="Cust. All"  onClick="RandomParameter('PreampCustomB', this.value);" />
+					<input type="button" value="Cust. Spk"  onClick="RandomParameter('SpeakerCustomB', this.value);" />
+					
+				</td>
+			</tr>
+		</table>
+
+		<div style="display:inline-table;">
+			<table id="PreampCustomB">
+				<tr><td colspan="7"><h2>Preamp B Custom</h2></td></tr>
+				<tr>
+					<td class="parameter">Type</td>
+					<td colspan="6">
+						<select id="PreampCustomBType" onChange="SetParameter(this.id, this.value);">
+							<option value="0" title="This is the sound of the Roland JC-120.">JC Clean</option>
+							<option value="1" title="This models a Fender Twin Reverb.">TW Clean</option>
+							<option value="2" title="This is a crunch sound that can produce natural distortion.">Crunch</option>
+							<option value="3" title="This models the drive sound of a VOX AC-30TB.">VO Drive</option>
+							<option value="4" title="This models the lead sound of the MESA/ Boogie combo amp.">BG Lead</option>
+							<option value="5" title="This models the sound of a Marshall with a modified midrange boost.">MS HiGain</option>
+							<option value="6" title="Models the sound of the Channel 2 MODERN Mode on the MESA/Boogie DUAL Rectifier.">Modern Stk</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomBBottom"    onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomBEdge"      onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomBBassFreq"  onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomBTreFreq"   onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomBPreampLow" onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-50" max="50" step="10" value="" id="preampCustomBPreampHi"  onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+				</tr>
+				<tr>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomBBottom"    onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomBEdge"      onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomBBassFreq"  onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomBTreFreq"   onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomBPreampLow" onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="-50" max="50" step="10" value="" id="PreampCustomBPreampHi"  onChange="this.value=10*Math.round(this.value/10); SetParameter(this.id, this.value/10+5); SetValueRangeNumber(this);" /></td>
+				</tr>
+				<tr>
+					<td align="center" class="parameter2">Bottom</td>
+					<td align="center" class="parameter2">Edge</td>
+					<td align="center" class="parameter2">Bass Freq</td>
+					<td align="center" class="parameter2">Tre Freq</td>
+					<td align="center" class="parameter2">Preamp Low</td>
+					<td align="center" class="parameter2">Preamp Hi</td>
+				</tr>
+			</table>
+			<br/>
+			<table id="SpeakerCustomB">
+				<tr><td colspan="5"><h2>Speaker B Custom</h2></td></tr>
+				<tr>
+					<td align="center"><input type="range" class="vertical" min="5"   max="15" step="1" value="" id="speakerCustomBSpSize"    onChange="SetParameter(this.id, this.value-5);  SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-10" max="10" step="1" value="" id="speakerCustomBColorLow"  onChange="SetParameter(this.id, this.value-(-10)); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="vertical" min="-10" max="10" step="1" value="" id="speakerCustomBColorHigh" onChange="SetParameter(this.id, this.value-(-10)); SetValueRangeNumber(this);" /></td>
+					<td>
+						<input type="radio" name="SpeakerCustomBSpNumber" id="SpeakerCustomBSpNumberX1" onClick="SetParameter(this.name,0);" /><label for="SpeakerCustomBSpNumberX1">X1</label><br/>
+						<input type="radio" name="SpeakerCustomBSpNumber" id="SpeakerCustomBSpNumberX2" onClick="SetParameter(this.name,1);" /><label for="SpeakerCustomBSpNumberX2">X2</label><br/>
+						<input type="radio" name="SpeakerCustomBSpNumber" id="SpeakerCustomBSpNumberX4" onClick="SetParameter(this.name,2);" /><label for="SpeakerCustomBSpNumberX4">X4</label><br/>
+						<input type="radio" name="SpeakerCustomBSpNumber" id="SpeakerCustomBSpNumberX8" onClick="SetParameter(this.name,3);" /><label for="SpeakerCustomBSpNumberX8">X8</label><br/>
+					</td>
+					<td>
+						<input type="radio" name="SpeakerCustomBCabinet" id="SpeakerCustomBCabinetOpen"  onClick="SetParameter(this.name,0);" /><label for="SpeakerCustomBCabinetOpen">Open</label> <br/>
+						<input type="radio" name="SpeakerCustomBCabinet" id="SpeakerCustomBCabinetClose" onClick="SetParameter(this.name,1);" /><label for="SpeakerCustomBCabinetClose">Close</label><br/>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><input type="number" id="SpeakerCustomBSpSize"    min="5" max="15" step="1"   onChange="SetParameter(this.id, this.value-5); SetValueRangeNumber(this);" />&quot;</td>
+					<td align="center"><input type="number" id="SpeakerCustomBColorLow"  min="-10" max="10" step="1" onChange="SetParameter(this.id, this.value-(-10)); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" id="SpeakerCustomBColorHigh" min="-10" max="10" step="1" onChange="SetParameter(this.id, this.value-(-10)); SetValueRangeNumber(this);" /></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="parameter2">Sp<br/>Size</td>
+					<td class="parameter2">Color<br/>Low</td>
+					<td class="parameter2">Color<br/>High</td>
+					<td class="parameter2">Sp<br/>Number</td>
+					<td class="parameter2">Cabinet</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<script>
+	<!-- 
+		GT10Controller();
+	-->
+	</script>
+</body>
+</html>

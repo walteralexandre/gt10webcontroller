@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!--
+	Status:		em construção
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>EZ-Tone</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel="stylesheet" type="text/css" href="css/CustomDatatip.css" />
+	<script src="js/CustomDatatip.js"></script>
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header>
+	<br/>
+	<div class="formEdit">
+		<h2>EZ-Tone</h2>
+		
+		<div class="eztone">
+			<h2>Pickup</h2>
+			<select class="eztone" id="eztPickupList" size="2" onChange="" onKeyDown="Arrows(this);">
+				<option value="0" title="Single type pickup">Single Coil</option>
+				<option value="1" title="Humbucking type pickup">Humbucker</option>
+			</select>
+		</div>
+		
+		<div class="eztone">
+			<h2>Output</h2>
+			<select class="eztone" id="eztOutputList" size="8" onChange="" onKeyDown="Arrows(this);">
+				<option value="0" title="Set this when connecting a Roland JC-120 guitar amp.">JC-120</option>
+				<option value="1" title="Use this setting when connecting a compact guitar amp.">Small Amp</option>
+				<option value="2" title="Set this when connecting to the guitar input for a combo-type guitar amp (combining amp and speakers in a single unit) other than a JC-120. * You may find that setting this to JC-120 may produce good results with your guitar amp.">Combo Amp</option>
+				<option value="3" title="Use this setting when connecting to the guitar input for a stack-type guitar amp (in which the amp and speakers are separated)">Stack Amp</option>
+				<option value="4" title="Set this when connecting to the JC-120’s RETURN.">JC-120 Return</option>
+				<option value="5" title="Set this when connecting to the RETURN on another combo-type amp.">Combo Return</option>
+				<option value="6" title="Set this when connecting to the RETURN on a stack-type amp. Set STACK Return even when using a power amp for the guitar in combination with a speaker cabinet.">Stack Return</option>
+				<option value="7" title="Use this setting when using headphones or when recording with the GT-10 connected to a multitrack recorder.">Line/Phones</option>
+			</select>
+		</div>
+		
+		<div class="eztone">
+			<h2>Basic Tone</h2>
+			<select class="eztone" id="eztBasicToneList" size="15" onChange="EztGetToneList(this.value);">
+				<option value="0"  title="Blues sound">Blues</option>
+				<option value="1"  title="Soul and Funk sound">Soul Funk</option>
+				<option value="2"  title="Jazz sound">Jazz</option>
+				<option value="3"  title="British Rock">Liverpool</option>
+				<option value="4"  title="The Hard Rock sound popular in the ’70s">70s Hard Rock</option>
+				<option value="5"  title="The Metal sound popular in the ’80s">80s Metal</option>
+				<option value="6"  title="Modern Metal sound">Modern Metal</option>
+				<option value="7"  title="West Coast sound">West Coast</option>
+				<option value="8"  title="Fuzz">Fuzz Rock</option>
+				<option value="9"  title="Recording Studio">Studio</option>
+				<option value="10" title="Progressive">Progressive</option>
+				<option value="11" title="Surf Rock sound">Surf Rock</option>
+				<option value="12" title="Country">Country</option>
+				<option value="13" title="For Acoustic Guitar">Acoustic</option>
+				<option value="14" title="Punk Pop">Punk Pop</option>
+			</select>
+		</div>
+		
+		<div class="eztone">
+			<h2>Tone</h2>
+			<select class="eztone" id="eztToneList" size="10" onChange="EztSetTone(this.value);" onKeyDown="">
+				
+			</select>
+		</div>
+		
+		<div class="eztone">
+			<table>
+				<tr><td colspan="5"><h2>Drive</h2></td></tr>
+				<tr>
+					<td>Solo</td>
+					<td><input type="range" id="" min="0" max="100" step="1" onChange=""/></td> 
+					<td>Backing</td>
+					<td>&nbsp;</td>
+					<td><input type="number" id="" min="0" max="100" step="1" onChange=""/></td>
+				</tr>
+				<tr>
+					<td>Soft</td>
+					<td><input type="range" id="" min="0" max="100" step="1" onChange=""/></td> 
+					<td>Hard</td>
+					<td>&nbsp;</td>
+					<td><input type="number" id="" min="0" max="100" step="1" onChange=""/></td>
+				</tr>
+			</table>
+			<br/>
+			<table>
+				<tr><td colspan="5"><h2>Effect</h2></td></tr>
+				<tr>
+					<td>Wet</td>
+					<td><input type="range" id="" min="0" max="100" step="1" onChange=""/></td> 
+					<td>Dry</td>
+					<td>&nbsp;</td>
+					<td><input type="number" id="" min="0" max="100" step="1" onChange=""/></td>
+				</tr>
+				<tr>
+					<td>Short</td>
+					<td><input type="range" id="" min="0" max="100" step="1" onChange=""/></td> 
+					<td>Long</td>
+					<td>&nbsp;</td>
+					<td><input type="number" id="" min="0" max="100" step="1" onChange=""/></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="eztone">
+			<table>
+				<tr><td colspan="4"><h2 onClick="GetParameter('eztoneEdit');" class="getParameters" data-tip="<p>By using EZ TONE EDIT you can adjust the sound of a patch with ease, without having to manipulate complicated parameters.</p>">Edit</h2></td></tr>
+				<tr>
+					<td align="center"><input type="range" class="ivertical" min="0" max="100" step="1" id="eztEditDrive"			onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="ivertical" min="0" max="100" step="1" id="eztEditDelayTime"		onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="ivertical" min="0" max="100" step="1" id="eztEditDelayLevel"		onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="range" class="ivertical" min="0" max="100" step="1" id="eztEditChorusLevel"		onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				</tr>
+				<tr>
+					<td align="center"><input type="number" min="0"   max="100" step="1" id="EztEditDrive"			onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="0"   max="100" step="1" id="EztEditDelayTime"		onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="0"   max="100" step="1" id="EztEditDelayLevel"		onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+					<td align="center"><input type="number" min="0"   max="100" step="1" id="EztEditChorusLevel"	onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+				</tr>
+				<tr>
+					<td class="parameter2" data-tip="<p>Adjusts the distortion (DRIVE).</p>">Drive</td>
+					<td class="parameter2" data-tip="<p>Adjusts the delay time.</p>">Delay<br/>Time</td>
+					<td class="parameter2" data-tip="<p>Adjusts the volume level of the delay.</p>">Delay<br/>Level</td>
+					<td class="parameter2" data-tip="<p>Adjusts the volume level of the chorus.</p>">Chorus<br/>Level</td>
+				</tr>
+			</table>
+		</div>
+		
+		<br/>
+		<div class="eztone">
+			<table>
+				<tr><td colspan="2"><h2>Basic Info</h2></td></tr>
+				<tr>
+					<td class="parameter">Preamp</td>  
+					<td></td>  
+				</tr>
+				<tr>
+					<td class="parameter">OD/DS</td>  
+					<td></td>  
+				</tr>
+				<tr>
+					<td class="parameter">Equalizer</td>  
+					<td></td>  
+				</tr>
+				<tr>
+					<td class="parameter">FX-1</td>  
+					<td></td>  
+				</tr>
+				<tr>
+					<td class="parameter">FX-2</td>  
+					<td></td>  
+				</tr>
+			</table>
+		</div>
+	</div>
+	<script>
+	<!-- 
+		GT10Controller();
+	-->
+	</script>
+</body>
+</html>

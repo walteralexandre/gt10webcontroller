@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+	Status:		pronto.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Send/Return</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/gt10.js"></script>
+</head>
+<body>
+	<header></header><br/>
+	<div class="formEdit">
+		<h2 onClick="GetParameter('SendReturn');" class="getParameters" title="Click to get the parameters.">Send/Return</h2>
+		<table>
+			<td class="parameter"><label for="SendReturnSw">On/Off</label></td>
+			<td><input type="checkbox" id="SendReturnSw" onClick="SetParameter(this.id, 0+this.checked);" /></td>
+			<tr>
+				<td>
+					<p><input type="radio" name="SendReturnMode" id="SendReturnModeNormal"    onClick="SetParameter(this.name, 0);" /> <label for="SendReturnModeNormal">Normal</label></p>
+					<p><input type="radio" name="SendReturnMode" id="SendReturnModeDirectMix" onClick="SetParameter(this.name, 1);" /> <label for="SendReturnModeDirectMix">Direct Mix</label></p>
+					<p><input type="radio" name="SendReturnMode" id="SendReturnModeBranchOut" onClick="SetParameter(this.name, 2);" /> <label for="SendReturnModeBranchOut">Branch Out</label></p>
+				</td>
+				<td align="center"><input type="range" class="vertical" min="0" max="200" step="2" id="sendReturnSendLev"   onChange="SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="range" class="vertical" min="0" max="200" step="2" id="sendReturnReturnLev" onChange="SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td align="center"></td>
+				<td align="center"><input type="number" min="0" max="200" step="2" id="SendReturnSendLev"   onChange="SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+				<td align="center"><input type="number" min="0" max="200" step="2" id="SendReturnReturnLev" onChange="SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Mode</td>
+				<td class="parameter2">Send Lev</td>
+				<td class="parameter2">Return Lev</td>
+			</tr>
+		</table>
+	</div>
+	<script>
+	<!-- 
+		GT10Controller();
+	-->
+	</script>
+</body>
+</html>

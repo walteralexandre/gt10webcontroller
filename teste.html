@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Teste WebMidi</title>
+	<script>
+		function teste() {
+			if (navigator.requestMIDIAccess) {
+				navigator.requestMIDIAccess({sysex:true}).then(OnMidiSuccess, OnMidiFailure);
+				document.getElementById('p').innerHTML = "Resultado: ";
+			}
+			else
+				document.getElementById('p').innerHTML += "Seu navegador não suporta WebMIDI.";
+		}
+		function OnMidiSuccess(e) {document.getElementById('p').innerHTML += 'Success:' + e;}
+		function OnMidiFailure(e) {document.getElementById('p').innerHtml += 'Failure:' + e;}
+	</script>
+</head>
+<body onload="teste()">
+	<p id='p'></p>
+</body>
+</html>
