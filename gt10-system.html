@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<!--
+	Status:		em construção
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>System</title>
+	<link rel="stylesheet" type="text/css" href="css/gt10.css" />
+	<link rel="stylesheet" type="text/css" href="css/CustomDatatip.css" />
+	<script src="js/CustomDatatip.js"></script>
+	<link rel='shortcut icon' type='image/png' href='img/disconnected.png' id="favicon" />
+	<script src="js/gt10.js"></script>
+		<script>
+		function showForm(index) {
+			var formNames, n, form;
+			formNames = ["SysTuner","SysInOut","SysPhrase","SysManual","SysPlay",
+							"SysControl","SysLCD","SysMIDI","SysUSB"];
+							
+			// ocultando todos os formulários
+			n = formNames.length;
+			for (var i=0; i<n; i++) {
+				form = document.getElementById(formNames[i]);
+				if (form)
+					form.style.display = 'none';
+			}
+			
+			// exibindo formulário selecionado
+			form = document.getElementById(formNames[index]);
+			if (form) {
+				form.style.display = 'inline-table';	// exibe o formulário
+				GetParameter(formNames[index]);			// obtém os dados do formulário
+			}
+		}
+	</script>
+</head>
+<body>
+	<header></header>
+	<br/>
+	<div class="formEdit">
+		<h2>System</h2>
+		<table>
+			<tr><td><h2>Settings</h2></td></tr>
+			<tr><td><select id="SysSetting" onChange="showForm(this.value);" autofocus="autofocus">
+				<option value="0">Tuner</option>
+				<option value="1">Input/Output</option>
+				<option value="2">Phrase Loop</option>
+				<option value="3">Manual Mode</option>
+				<option value="4">Play Option</option>
+				<option value="5">Controller</option>
+				<option value="6">LCD</option>
+				<option value="7">MIDI</option>
+				<option value="8">USB</option>
+			</select></td></tr>
+		</table>
+		
+		<table id="SysTuner" style="display:none;">
+			<tr><td colspan="2"><h2 onClick="GetParameter('SystemTuner')" class="getParameters" data-tip="<p>Tuner Settings</p>">Tuner</h2></td></tr>
+			<tr>
+				<td align="center"><input type="range" class="ivertical" min="435" max="445" step="1" id="systemTunerPitch" onChange="SetParameter(this.id, this.value-435); SetValueRangeNumber(this);" /></td>
+				<td align="left">
+					<p><input type="radio" id="SystemTunerOutputMute"   name="SystemTunerOutput" onClick="SetParameter(thid.id, 0);" /> <label for="SystemTunerOutputMute"   data-tip="<p>The tuning sound is not output.</p>">Mute</label></p>
+					<p><input type="radio" id="SystemTunerOutputBypass" name="SystemTunerOutput" onClick="SetParameter(thid.id, 1);" /> <label for="SystemTunerOutputBypass" data-tip="<p>The tuning sound is output.</p>">Bypass</label></p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center"><input type="number" min="435" max="445" step="1" id="SystemTunerPitch" onChange="SetParameter(this.id, this.value-435); SetValueRangeNumber(this);" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="parameter2" data-tip="<p>This sets the reference pitch.</p>">Pitch</td>
+				<td class="parameter2" data-tip="<p>This sets the tuning sound.</p>">Output</td>
+			</tr>
+		</table>
+		
+		<table id="SysInOut" style="display:none;">
+			<tr><td><h2 onClick="GetParameter('SystemInputOutput')" class="getParameters" data-tip="<p></p>">Input/Output</h2></td></tr>
+			<tr><td>
+				<div>
+					<table style="display:inline-block">
+						<tr><td colspan="2">
+							<h2>Output</h2>			
+						</td></tr>
+						<tr>
+							<td>
+								<input type="radio" name="OutputSelectMode" id="OutputSelectModePatch" onClick="SetParameter(this.name, 0)" /> <label for="OutputSelectModePatch" data-tip="This uses the patch’s Output Select setting. You can use a different output setting for each individual patch.">Patch</label>
+							</td>
+							<td>
+								<select id="PatchOutputSelect" onChange="SetParameter(this.id, this.value);">
+									<option value="0" data-tip="<p>Set this when connecting a Roland JC-120 guitar amp.</p>">JC-120</option>
+									<option value="1" data-tip="<p>Use this setting when connecting a compact guitar amp.</p>">SMALL AMP</option>
+									<option value="2" data-tip="<p>Set this when connecting to the guitar input for a combo-type guitar amp (combining amp and speakers in a single unit) other than a JC-120. You may find that setting this to JC-120 may produce good results with your guitar amp.</p>">COMBO AMP</option>
+									<option value="3" data-tip="<p>Use this setting when connecting to the guitar input for a stack-type guitar amp (in which the amp and speakers are separated).</p>">STACK AMP</option>
+									<option value="4" data-tip="<p>Set this when connecting to the JC-120’s RETURN.</p>">JC-120 Return</option>
+									<option value="5" data-tip="<p>Set this when connecting to the RETURN on another combo-type amp.</p>">COMBO Return</option>
+									<option value="6" data-tip="<p>Set this when connecting to the RETURN on a stack-type amp. Set STACK Return even when using a power amp for the guitar in combination with a speaker cabinet.</p>">STACK Return</option>
+									<option value="7" data-tip="<p>Use this setting when using headphones or when recording with the GT-10 connected to a multitrack recorder. Use the LINE/PHONES setting if you are using a speaker simulator. When headphones are connected to the PHONES jack, tonal adjustments are applied so the sound is close to that produced by the guitar amp.</p>">LINE/PHONES</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="radio" name="OutputSelectMode" id="OutputSelectModeSystem" onClick="SetParameter(this.name, 1)" /> <label for="OutputSelectModeSystem" data-tip="This uses the system’s Output Select setting. The same output setting is used for all patches.">System</label>
+							</td>
+							<td>
+								<select id="SystemOutputSelect" onChange="SetParameter(this.id, this.value);">
+									<option value="0" data-tip="<p>Set this when connecting a Roland JC-120 guitar amp.</p>">JC-120</option>
+									<option value="1" data-tip="<p>Use this setting when connecting a compact guitar amp.</p>">SMALL AMP</option>
+									<option value="2" data-tip="<p>Set this when connecting to the guitar input for a combo-type guitar amp (combining amp and speakers in a single unit) other than a JC-120. You may find that setting this to JC-120 may produce good results with your guitar amp.</p>">COMBO AMP</option>
+									<option value="3" data-tip="<p>Use this setting when connecting to the guitar input for a stack-type guitar amp (in which the amp and speakers are separated).</p>">STACK AMP</option>
+									<option value="4" data-tip="<p>Set this when connecting to the JC-120’s RETURN.</p>">JC-120 Return</option>
+									<option value="5" data-tip="<p>Set this when connecting to the RETURN on another combo-type amp.</p>">COMBO Return</option>
+									<option value="6" data-tip="<p>Set this when connecting to the RETURN on a stack-type amp. Set STACK Return even when using a power amp for the guitar in combination with a speaker cabinet.</p>">STACK Return</option>
+									<option value="7" data-tip="<p>Use this setting when using headphones or when recording with the GT-10 connected to a multitrack recorder. Use the LINE/PHONES setting if you are using a speaker simulator. When headphones are connected to the PHONES jack, tonal adjustments are applied so the sound is close to that produced by the guitar amp.</p>">LINE/PHONES</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+
+					<table style="display:inline-block">
+						<tr><td colspan="9"><h2>Input</h2></td></tr>
+						<tr>
+							<td>
+								<p><input type="radio" id="InputOutputInputSelectGt1" name="InputOutputInputSelect" onClick="SetParameter(this.name, 0)" /> <label for="InputOutputInputSelectGt1">Guitar 1</label></p>
+								<p><input type="radio" id="InputOutputInputSelectGt2" name="InputOutputInputSelect" onClick="SetParameter(this.name, 1)" /> <label for="InputOutputInputSelectGt2">Guitar 2</label></p>
+								<p><input type="radio" id="InputOutputInputSelectGt3" name="InputOutputInputSelect" onClick="SetParameter(this.name, 2)" /> <label for="InputOutputInputSelectGt3">Guitar 3</label></p>
+								<p><input type="radio" id="InputOutputInputSelectUsb" name="InputOutputInputSelect" onClick="SetParameter(this.name, 3)" /> <label for="InputOutputInputSelectUsb">USB In</label>  </p>
+							</td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputInputLev1"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputInputPres1" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputInputLev2"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputInputPres2" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputInputLev3"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputInputPres3" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputUsbInLev3"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputUsbInPres3" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td align="center"><input type="number" id="InputOutputInputLev1"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="number" id="InputOutputInputPres1" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="number" id="InputOutputInputLev2"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="number" id="InputOutputInputPres2" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="number" id="InputOutputInputLev3"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="number" id="InputOutputInputPres3" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="number" id="InputOutputUsbInLev3"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="number" id="InputOutputUsbInPres3" min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value-(-20)); SetValueRangeNumber(this);" /></td>
+						</tr>
+						<tr>
+							<td class="parameter2">Select</td>
+							<td class="parameter2">Guitar 1<br/>Level</td>
+							<td class="parameter2">Guitar 1<br/>Presence</td>
+							<td class="parameter2">Guitar 2<br/>Level</td>
+							<td class="parameter2">Guitar 2<br/>Presence</td>
+							<td class="parameter2">Guitar 3<br/>Level</td>
+							<td class="parameter2">Guitar 3<br/>Presence</td>
+							<td class="parameter2">USB In<br/>Level</td>
+							<td class="parameter2">USB In<br/>Presence</td>
+						</tr>
+					</table>
+
+					<br/>
+					<table style="display:inline-block">
+						<tr><td colspan="5"><h2>Global Equalizer</h2></td></tr>
+						<tr>
+							<td align="center"><input type="range" class="vertical" id="inputOutputGlobalEqLowGain"  min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputGlobalEqMidGain"  min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputGlobalEqMidFreq"  min="0"   max="27" step="1" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputGlobalEqMidQ"     min="0"   max="5"  step="1" onChange="SetParameter(this.id, this.value); 		SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputGlobalEqHighGain" min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+						</tr>
+						<tr>
+							<td align="center"><input type="number" id="InputOutputGlobalEqLowGain"  min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="number" id="InputOutputGlobalEqMidGain"  min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+							<td align="center"><select id="InputOutputGlobalEqMidFreq" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);">
+								<option value="0">20.0Hz</option>
+								<option value="1">25.0Hz</option>
+								<option value="2">31.0Hz</option>
+								<option value="3">40.0Hz</option>
+								<option value="4">50.0Hz</option>
+								<option value="5">63.0Hz</option>
+								<option value="6">80.0Hz</option>
+								<option value="7">100Hz</option>
+								<option value="8">125Hz</option>
+								<option value="9">160Hz</option>
+								<option value="10">200Hz</option>
+								<option value="11">250Hz</option>
+								<option value="12">315Hz</option>
+								<option value="13">400Hz</option>
+								<option value="14">500Hz</option>
+								<option value="15">630Hz</option>
+								<option value="16">800Hz</option>
+								<option value="17">1.00KHz</option>
+								<option value="18">1.25KHz</option>
+								<option value="19">1.60KHz</option>
+								<option value="20">2.00KHz</option>
+								<option value="21">2.50KHz</option>
+								<option value="22">3.15KHz</option>
+								<option value="23">4.00KHz</option>
+								<option value="24">5.00KHz</option>
+								<option value="25">6.30KHz</option>
+								<option value="26">8.00KHz</option>
+								<option value="27">10.0KHz</option>
+							</select></td>
+							<td align="center"><select id="InputOutputGlobalEqMidQ"    onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);">
+								<option value="0">0.5</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">4</option>
+								<option value="4">8</option>
+								<option value="5">16</option>
+							</select></td>
+							<td align="center"><input type="number" id="InputOutputGlobalEqHighGain" min="-12" max="12" step="1" onChange="SetParameter(this.id, this.value-(-12)); SetValueRangeNumber(this);" /></td>
+						</tr>
+						<tr>
+							<td class="parameter2">Low Gain</td>
+							<td class="parameter2">Mid Gain</td>
+							<td class="parameter2">Mid Freq</td>
+							<td class="parameter2">Mid Q</td>
+							<td class="parameter2">High Gain</td>
+						</tr>
+					</table>
+
+					<table style="display:inline-block">
+						<tr><td colspan="5"><h2>Total</h2></td></tr>
+						<tr>
+							<td align="center"><input type="range" class="vertical" id="inputOutputNsThreshold"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value);   SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputRevLevel"     min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputUsbDgtOutLev" min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="range" class="vertical" id="inputOutputUsbMixLev"    min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+							<td>
+								<p><input type="radio" id="InputOutputMainOutLev10" name="InputOutputMainOutLev" onClick="SetParameter(this.name, 0)" /> <label for="InputOutputMainOutLev10">-10dB</label></p>
+								<p><input type="radio" id="InputOutputMainOutLev4"  name="InputOutputMainOutLev" onClick="SetParameter(this.name, 1)" /> <label for="InputOutputMainOutLev4">+4dB</label></p>
+							</td>
+						</tr>
+						<tr>
+							<td align="center"><input type="number" id="InputOutputNsThreshold"  min="-20" max="20" step="1" onChange="SetParameter(this.id, this.value);   SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="number" id="InputOutputRevLevel"     min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="number" id="InputOutputUsbDgtOutLev" min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+							<td align="center"><input type="number" id="InputOutputUsbMixLev"    min="0" max="200" step="2"  onChange="if (this.value % 2 == 1) this.value--; SetParameter(this.id, this.value/2); SetValueRangeNumber(this);" /></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td class="parameter2">NS<br/>Threshold</td>
+							<td class="parameter2">Reverb<br/>Level</td>
+							<td class="parameter2">USB DGT/<br/>OUT Level</td>
+							<td class="parameter2">USB Mix<br/>Level</td>
+							<td class="parameter2">Main Out<br/>Level</td>
+						</tr>
+					</table>
+					
+					</div>
+			</td></tr>
+		</table>
+		
+		<table id="SysPhrase" style="display:none;">
+			<tr><td colspan="5"><h2 onClick="GetParameter('SystemPhraseLoop')" class="getParameters">Phrase Loop</h2></td></tr>
+			<tr>
+				<td align="left">
+					<p><input type="radio" id="SystemPhraseLoopModePerformance" name="SystemPhraseLoopMode" onClick="SetParameter(this.id, 0);" /> <label for="SystemPhraseLoopModePerformance" data-tip="<p>This records the sound after it passes through the effects.</p> <p>This lets you achieve a rich variety of performances by combining different tones.</p>">Performance</label></p>
+					<p><input type="radio" id="SystemPhraseLoopModePatchEdit"   name="SystemPhraseLoopMode" onClick="SetParameter(this.id, 1);" /> <label for="SystemPhraseLoopModePatchEdit"   data-tip="<p>This records the sound before it passes through the effects, and applies the effects during loop play.</p> <p>This enables you to adjust effects or compare patch tones.</p>">Patch Edit</label></p>
+				</td>
+				<td align="left">
+					<p><input type="radio" id="SystemPhraseLoopRecModeMono"   name="SystemPhraseLoopRecMode" onClick="SetParameter(this.id, 0);" /> <label for="SystemPhraseLoopRecModeMono"   data-tip="<p>Phrases are recorded in mono.</p>">Mono</label></p>
+					<p><input type="radio" id="SystemPhraseLoopRecModeStereo" name="SystemPhraseLoopRecMode" onClick="SetParameter(this.id, 1);" /> <label for="SystemPhraseLoopRecModeStereo" data-tip="<p>Phrases are recorded in stereo.</p>">Stereo</label></p>
+				</td>
+				<td align="left">
+					<p><input type="radio" id="SystemPhraseLoopPdlModeOff" name="SystemPhraseLoopPdlMode" onClick="SetParameter(this.id, 0);" /> <label for="SystemPhraseLoopPdlModeOff" data-tip="<p>The BANK pedals are not used for operation of the Phrase Loop feature. These are used as bank switch pedals.</p> <img src='img/tip.png' /> <p>Phrase Loop can be controlled by assigning the Phrase Loop feature to any of the CTL 1 through 4 etc. and maintaining the BANK pedals’ bank switching function.</p>">Off</label></p>
+					<p><input type="radio" id="SystemPhraseLoopPdlModeOn"  name="SystemPhraseLoopPdlMode" onClick="SetParameter(this.id, 1);" /> <label for="SystemPhraseLoopPdlModeOn"  data-tip="<p>The BANK pedals are used for operation of the Phrase Loop feature.</p>">On</label></p>
+				</td>
+				<td align="left">
+					<p><input type="radio" id="SystemPhraseLoopClearPdlClearOnly" name="SystemPhraseLoopClearPdl" onClick="SetParameter(this.id, 0);" /> <label for="SystemPhraseLoopClearPdlClearOnly" data-tip="<p>When you press [BANK ▲ ] while the Phrase Loop feature is on, the recorded data is cleared and then GT-10 switches to STANDBY mode.</p>">Clear Only</label></p>
+					<p><input type="radio" id="SystemPhraseLoopClearPdlMuteClear" name="SystemPhraseLoopClearPdl" onClick="SetParameter(this.id, 1);" /> <label for="SystemPhraseLoopClearPdlMuteClear" data-tip="<p>When you press [BANK ▲ ] while the Phrase Loop feature is on, the performance of the recorded phrase is muted (the recorded data is not erased). </p><p>If you then press [BANK ▲ ] again while the phrase is muted, the recorded data is cleared and then GT-10 switches to STANDBY mode.</p> <img src='img/tip.png'/><p>Skillful use of muting lets you combine your own performances with prerecorded phrases at the timing you want.</p>">Mute/Clear</label></p>
+				</td>
+				<td align="center"><input type="range" class="ivertical" min="0" max="120" step="1" id="systemPhraseLoopPlayLev" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td align="center"><input type="number" min="0" max="120" step="1" id="SystemPhraseLoopPlayLev" onChange="SetParameter(this.id, this.value); SetValueRangeNumber(this);" /></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Mode</td>
+				<td class="parameter2">Recording<br/>Mode</td>
+				<td class="parameter2">Pedal<br/>Mode</td>
+				<td class="parameter2">Clear Pedal<br/>Function</td>
+				<td class="parameter2" data-tip="<p>Sets the phrase playback volume.</p>">Play<br/>Level</td>
+			</tr>
+		</table>
+		
+		<table id="SysManual" style="display:none;">
+			<tr><td colspan="6"><h2 onClick="GetParameter('SystemManualMode')" class="getParameters" data-tip="<p>The Number pedal and the BANK pedal are used for switching specified effects on and off.</p>">Manual Mode</h2></td></tr>
+			<tr>
+				<td align="center"><select id="SystemManualModePedal1"   onChange="SetParameter(this.id, this.value);">
+					<option value="" data-tip="<p>The function is not assign to the pedals.</p>">Off</option>
+					<option value="" data-tip="<p>Switches between Preamp channel A and B.</p>">Ch.A/B</option>
+					<option value="" data-tip="<p>Switches the OD/DS SOLO on and off.</p>">OD Sol</option>
+					<option value="" data-tip="<p>Switches the Preamp SOLO on and off.</p>">Solo</option>
+					<option value="" data-tip="<p>Switches the preamp SOLO, for both channel A and B, on and off.</p><p> If one of the two channels is off, both will be turned on.</p>">A&amp;BSol</option>
+					<option value="" data-tip="<p>Switches the COMP on and off.</p>">Comp</option>
+					<option value="" data-tip="<p>Switches the OD/DS on and off.</p>">OD/DS</option>
+					<option value="" data-tip="<p>Switches the PREAMP/SPEAKER on and off.</p>">Preamp</option>
+					<option value="" data-tip="<p>Switches the EQ on and off.</p>">EQ</option>
+					<option value="" data-tip="<p>Switches the FX-1 on and off.</p>">FX1</option>
+					<option value="" data-tip="<p>Switches the FX-2 on and off.</p>">FX2</option>
+					<option value="" data-tip="<p>Switches the DELAY on and off.</p>">Delay</option>
+					<option value="" data-tip="<p>Switches the CHORUS on and off.</p>">Chorus</option>
+					<option value="" data-tip="<p>Switches the REVERB on and off.</p>">Reverb</option>
+					<option value="" data-tip="<p>Switches the Pedal FX on and off.</p>">PdlFX</option>
+					<option value="" data-tip="<p>Switches the SEND/RETURN on and off.</p>">S/R</option>
+					<option value="" data-tip="<p>Switches the Amp Control on and off.</p>">AmpCtl</option>
+					<option value="" data-tip="<p>Switches the TUNER/BYPASS on and off.</p>">Tuner</option>
+					<option value="" data-tip="<p>Switches the PHRASE LOOP on and off.</p>">PL</option>
+					<option value="" data-tip="<p>Records/plays back the phrase.</p>">PL R/P</option>
+					<option value="" data-tip="<p>Clears the phrase.</p>">PL Clr</option>
+					<option value="" data-tip="<p>Mutes playback of the phrase.</p>">PL M/P</option>
+					<option value="" data-tip="<p>Used for tap input of the Master BPM.</p>">BPMTap</option>
+					<option value="" data-tip="<p>Used for tap input of the delay time.</p>">DlyTap</option>
+					<option value="" data-tip="<p>Controls the Start/Stop of external MIDI devices (such as sequencers).</p>">MIDI</option>
+					<option value="" data-tip="<p>Controls the Play/Stop of external MIDI devices (such as hard disk recorders).</p>">MMCPly</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 10 units.</p>">Lev+10</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 20 units.</p>">Lev+20</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 10 units.</p>">Lev-10</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 20 units.</p>">Lev-20</option>
+					<option value="" data-tip="<p>Switches to the next higher patch number in the same bank as the currently selected patch.</p>">NumInc</option>
+					<option value="" data-tip="<p>Switches to the next lower patch number in the same bank as the currently selected patch.</p>">NumDec</option>
+					<option value="" data-tip="<p>Switches to the next higher bank number.</p>">BnkInc</option>
+					<option value="" data-tip="<p>Switches to the next lower bank number.</p>">BnkDec</option>
+				</select></td>
+				<td align="center"><select id="SystemManualModePedal2"   onChange="SetParameter(this.id, this.value);">
+					<option value="" data-tip="<p>The function is not assign to the pedals.</p>">Off</option>
+					<option value="" data-tip="<p>Switches between Preamp channel A and B.</p>">Ch.A/B</option>
+					<option value="" data-tip="<p>Switches the OD/DS SOLO on and off.</p>">OD Sol</option>
+					<option value="" data-tip="<p>Switches the Preamp SOLO on and off.</p>">Solo</option>
+					<option value="" data-tip="<p>Switches the preamp SOLO, for both channel A and B, on and off.</p><p> If one of the two channels is off, both will be turned on.</p>">A&amp;BSol</option>
+					<option value="" data-tip="<p>Switches the COMP on and off.</p>">Comp</option>
+					<option value="" data-tip="<p>Switches the OD/DS on and off.</p>">OD/DS</option>
+					<option value="" data-tip="<p>Switches the PREAMP/SPEAKER on and off.</p>">Preamp</option>
+					<option value="" data-tip="<p>Switches the EQ on and off.</p>">EQ</option>
+					<option value="" data-tip="<p>Switches the FX-1 on and off.</p>">FX1</option>
+					<option value="" data-tip="<p>Switches the FX-2 on and off.</p>">FX2</option>
+					<option value="" data-tip="<p>Switches the DELAY on and off.</p>">Delay</option>
+					<option value="" data-tip="<p>Switches the CHORUS on and off.</p>">Chorus</option>
+					<option value="" data-tip="<p>Switches the REVERB on and off.</p>">Reverb</option>
+					<option value="" data-tip="<p>Switches the Pedal FX on and off.</p>">PdlFX</option>
+					<option value="" data-tip="<p>Switches the SEND/RETURN on and off.</p>">S/R</option>
+					<option value="" data-tip="<p>Switches the Amp Control on and off.</p>">AmpCtl</option>
+					<option value="" data-tip="<p>Switches the TUNER/BYPASS on and off.</p>">Tuner</option>
+					<option value="" data-tip="<p>Switches the PHRASE LOOP on and off.</p>">PL</option>
+					<option value="" data-tip="<p>Records/plays back the phrase.</p>">PL R/P</option>
+					<option value="" data-tip="<p>Clears the phrase.</p>">PL Clr</option>
+					<option value="" data-tip="<p>Mutes playback of the phrase.</p>">PL M/P</option>
+					<option value="" data-tip="<p>Used for tap input of the Master BPM.</p>">BPMTap</option>
+					<option value="" data-tip="<p>Used for tap input of the delay time.</p>">DlyTap</option>
+					<option value="" data-tip="<p>Controls the Start/Stop of external MIDI devices (such as sequencers).</p>">MIDI</option>
+					<option value="" data-tip="<p>Controls the Play/Stop of external MIDI devices (such as hard disk recorders).</p>">MMCPly</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 10 units.</p>">Lev+10</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 20 units.</p>">Lev+20</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 10 units.</p>">Lev-10</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 20 units.</p>">Lev-20</option>
+					<option value="" data-tip="<p>Switches to the next higher patch number in the same bank as the currently selected patch.</p>">NumInc</option>
+					<option value="" data-tip="<p>Switches to the next lower patch number in the same bank as the currently selected patch.</p>">NumDec</option>
+					<option value="" data-tip="<p>Switches to the next higher bank number.</p>">BnkInc</option>
+					<option value="" data-tip="<p>Switches to the next lower bank number.</p>">BnkDec</option>
+				</select></td>
+				<td align="center"><select id="SystemManualModePedal3"   onChange="SetParameter(this.id, this.value);">
+					<option value="" data-tip="<p>The function is not assign to the pedals.</p>">Off</option>
+					<option value="" data-tip="<p>Switches between Preamp channel A and B.</p>">Ch.A/B</option>
+					<option value="" data-tip="<p>Switches the OD/DS SOLO on and off.</p>">OD Sol</option>
+					<option value="" data-tip="<p>Switches the Preamp SOLO on and off.</p>">Solo</option>
+					<option value="" data-tip="<p>Switches the preamp SOLO, for both channel A and B, on and off.</p><p> If one of the two channels is off, both will be turned on.</p>">A&amp;BSol</option>
+					<option value="" data-tip="<p>Switches the COMP on and off.</p>">Comp</option>
+					<option value="" data-tip="<p>Switches the OD/DS on and off.</p>">OD/DS</option>
+					<option value="" data-tip="<p>Switches the PREAMP/SPEAKER on and off.</p>">Preamp</option>
+					<option value="" data-tip="<p>Switches the EQ on and off.</p>">EQ</option>
+					<option value="" data-tip="<p>Switches the FX-1 on and off.</p>">FX1</option>
+					<option value="" data-tip="<p>Switches the FX-2 on and off.</p>">FX2</option>
+					<option value="" data-tip="<p>Switches the DELAY on and off.</p>">Delay</option>
+					<option value="" data-tip="<p>Switches the CHORUS on and off.</p>">Chorus</option>
+					<option value="" data-tip="<p>Switches the REVERB on and off.</p>">Reverb</option>
+					<option value="" data-tip="<p>Switches the Pedal FX on and off.</p>">PdlFX</option>
+					<option value="" data-tip="<p>Switches the SEND/RETURN on and off.</p>">S/R</option>
+					<option value="" data-tip="<p>Switches the Amp Control on and off.</p>">AmpCtl</option>
+					<option value="" data-tip="<p>Switches the TUNER/BYPASS on and off.</p>">Tuner</option>
+					<option value="" data-tip="<p>Switches the PHRASE LOOP on and off.</p>">PL</option>
+					<option value="" data-tip="<p>Records/plays back the phrase.</p>">PL R/P</option>
+					<option value="" data-tip="<p>Clears the phrase.</p>">PL Clr</option>
+					<option value="" data-tip="<p>Mutes playback of the phrase.</p>">PL M/P</option>
+					<option value="" data-tip="<p>Used for tap input of the Master BPM.</p>">BPMTap</option>
+					<option value="" data-tip="<p>Used for tap input of the delay time.</p>">DlyTap</option>
+					<option value="" data-tip="<p>Controls the Start/Stop of external MIDI devices (such as sequencers).</p>">MIDI</option>
+					<option value="" data-tip="<p>Controls the Play/Stop of external MIDI devices (such as hard disk recorders).</p>">MMCPly</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 10 units.</p>">Lev+10</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 20 units.</p>">Lev+20</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 10 units.</p>">Lev-10</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 20 units.</p>">Lev-20</option>
+					<option value="" data-tip="<p>Switches to the next higher patch number in the same bank as the currently selected patch.</p>">NumInc</option>
+					<option value="" data-tip="<p>Switches to the next lower patch number in the same bank as the currently selected patch.</p>">NumDec</option>
+					<option value="" data-tip="<p>Switches to the next higher bank number.</p>">BnkInc</option>
+					<option value="" data-tip="<p>Switches to the next lower bank number.</p>">BnkDec</option>
+				</select></td>
+				<td align="center"><select id="SystemManualModePedal4"   onChange="SetParameter(this.id, this.value);">
+					<option value="" data-tip="<p>The function is not assign to the pedals.</p>">Off</option>
+					<option value="" data-tip="<p>Switches between Preamp channel A and B.</p>">Ch.A/B</option>
+					<option value="" data-tip="<p>Switches the OD/DS SOLO on and off.</p>">OD Sol</option>
+					<option value="" data-tip="<p>Switches the Preamp SOLO on and off.</p>">Solo</option>
+					<option value="" data-tip="<p>Switches the preamp SOLO, for both channel A and B, on and off.</p><p> If one of the two channels is off, both will be turned on.</p>">A&amp;BSol</option>
+					<option value="" data-tip="<p>Switches the COMP on and off.</p>">Comp</option>
+					<option value="" data-tip="<p>Switches the OD/DS on and off.</p>">OD/DS</option>
+					<option value="" data-tip="<p>Switches the PREAMP/SPEAKER on and off.</p>">Preamp</option>
+					<option value="" data-tip="<p>Switches the EQ on and off.</p>">EQ</option>
+					<option value="" data-tip="<p>Switches the FX-1 on and off.</p>">FX1</option>
+					<option value="" data-tip="<p>Switches the FX-2 on and off.</p>">FX2</option>
+					<option value="" data-tip="<p>Switches the DELAY on and off.</p>">Delay</option>
+					<option value="" data-tip="<p>Switches the CHORUS on and off.</p>">Chorus</option>
+					<option value="" data-tip="<p>Switches the REVERB on and off.</p>">Reverb</option>
+					<option value="" data-tip="<p>Switches the Pedal FX on and off.</p>">PdlFX</option>
+					<option value="" data-tip="<p>Switches the SEND/RETURN on and off.</p>">S/R</option>
+					<option value="" data-tip="<p>Switches the Amp Control on and off.</p>">AmpCtl</option>
+					<option value="" data-tip="<p>Switches the TUNER/BYPASS on and off.</p>">Tuner</option>
+					<option value="" data-tip="<p>Switches the PHRASE LOOP on and off.</p>">PL</option>
+					<option value="" data-tip="<p>Records/plays back the phrase.</p>">PL R/P</option>
+					<option value="" data-tip="<p>Clears the phrase.</p>">PL Clr</option>
+					<option value="" data-tip="<p>Mutes playback of the phrase.</p>">PL M/P</option>
+					<option value="" data-tip="<p>Used for tap input of the Master BPM.</p>">BPMTap</option>
+					<option value="" data-tip="<p>Used for tap input of the delay time.</p>">DlyTap</option>
+					<option value="" data-tip="<p>Controls the Start/Stop of external MIDI devices (such as sequencers).</p>">MIDI</option>
+					<option value="" data-tip="<p>Controls the Play/Stop of external MIDI devices (such as hard disk recorders).</p>">MMCPly</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 10 units.</p>">Lev+10</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 20 units.</p>">Lev+20</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 10 units.</p>">Lev-10</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 20 units.</p>">Lev-20</option>
+					<option value="" data-tip="<p>Switches to the next higher patch number in the same bank as the currently selected patch.</p>">NumInc</option>
+					<option value="" data-tip="<p>Switches to the next lower patch number in the same bank as the currently selected patch.</p>">NumDec</option>
+					<option value="" data-tip="<p>Switches to the next higher bank number.</p>">BnkInc</option>
+					<option value="" data-tip="<p>Switches to the next lower bank number.</p>">BnkDec</option>
+				</select></td>
+				<td align="center"><select id="SystemManualModeBankDown" onChange="SetParameter(this.id, this.value);">
+					<option value="" data-tip="<p>The function is not assign to the pedals.</p>">Off</option>
+					<option value="" data-tip="<p>Switches between Preamp channel A and B.</p>">Ch.A/B</option>
+					<option value="" data-tip="<p>Switches the OD/DS SOLO on and off.</p>">OD Sol</option>
+					<option value="" data-tip="<p>Switches the Preamp SOLO on and off.</p>">Solo</option>
+					<option value="" data-tip="<p>Switches the preamp SOLO, for both channel A and B, on and off.</p><p> If one of the two channels is off, both will be turned on.</p>">A&amp;BSol</option>
+					<option value="" data-tip="<p>Switches the COMP on and off.</p>">Comp</option>
+					<option value="" data-tip="<p>Switches the OD/DS on and off.</p>">OD/DS</option>
+					<option value="" data-tip="<p>Switches the PREAMP/SPEAKER on and off.</p>">Preamp</option>
+					<option value="" data-tip="<p>Switches the EQ on and off.</p>">EQ</option>
+					<option value="" data-tip="<p>Switches the FX-1 on and off.</p>">FX1</option>
+					<option value="" data-tip="<p>Switches the FX-2 on and off.</p>">FX2</option>
+					<option value="" data-tip="<p>Switches the DELAY on and off.</p>">Delay</option>
+					<option value="" data-tip="<p>Switches the CHORUS on and off.</p>">Chorus</option>
+					<option value="" data-tip="<p>Switches the REVERB on and off.</p>">Reverb</option>
+					<option value="" data-tip="<p>Switches the Pedal FX on and off.</p>">PdlFX</option>
+					<option value="" data-tip="<p>Switches the SEND/RETURN on and off.</p>">S/R</option>
+					<option value="" data-tip="<p>Switches the Amp Control on and off.</p>">AmpCtl</option>
+					<option value="" data-tip="<p>Switches the TUNER/BYPASS on and off.</p>">Tuner</option>
+					<option value="" data-tip="<p>Switches the PHRASE LOOP on and off.</p>">PL</option>
+					<option value="" data-tip="<p>Records/plays back the phrase.</p>">PL R/P</option>
+					<option value="" data-tip="<p>Clears the phrase.</p>">PL Clr</option>
+					<option value="" data-tip="<p>Mutes playback of the phrase.</p>">PL M/P</option>
+					<option value="" data-tip="<p>Used for tap input of the Master BPM.</p>">BPMTap</option>
+					<option value="" data-tip="<p>Used for tap input of the delay time.</p>">DlyTap</option>
+					<option value="" data-tip="<p>Controls the Start/Stop of external MIDI devices (such as sequencers).</p>">MIDI</option>
+					<option value="" data-tip="<p>Controls the Play/Stop of external MIDI devices (such as hard disk recorders).</p>">MMCPly</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 10 units.</p>">Lev+10</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 20 units.</p>">Lev+20</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 10 units.</p>">Lev-10</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 20 units.</p>">Lev-20</option>
+					<option value="" data-tip="<p>Switches to the next higher patch number in the same bank as the currently selected patch.</p>">NumInc</option>
+					<option value="" data-tip="<p>Switches to the next lower patch number in the same bank as the currently selected patch.</p>">NumDec</option>
+					<option value="" data-tip="<p>Switches to the next higher bank number.</p>">BnkInc</option>
+					<option value="" data-tip="<p>Switches to the next lower bank number.</p>">BnkDec</option>
+				</select></td>
+				<td align="center"><select id="SystemManualModeBankUp"   onChange="SetParameter(this.id, this.value);">
+					<option value="" data-tip="<p>The function is not assign to the pedals.</p>">Off</option>
+					<option value="" data-tip="<p>Switches between Preamp channel A and B.</p>">Ch.A/B</option>
+					<option value="" data-tip="<p>Switches the OD/DS SOLO on and off.</p>">OD Sol</option>
+					<option value="" data-tip="<p>Switches the Preamp SOLO on and off.</p>">Solo</option>
+					<option value="" data-tip="<p>Switches the preamp SOLO, for both channel A and B, on and off.</p><p> If one of the two channels is off, both will be turned on.</p>">A&amp;BSol</option>
+					<option value="" data-tip="<p>Switches the COMP on and off.</p>">Comp</option>
+					<option value="" data-tip="<p>Switches the OD/DS on and off.</p>">OD/DS</option>
+					<option value="" data-tip="<p>Switches the PREAMP/SPEAKER on and off.</p>">Preamp</option>
+					<option value="" data-tip="<p>Switches the EQ on and off.</p>">EQ</option>
+					<option value="" data-tip="<p>Switches the FX-1 on and off.</p>">FX1</option>
+					<option value="" data-tip="<p>Switches the FX-2 on and off.</p>">FX2</option>
+					<option value="" data-tip="<p>Switches the DELAY on and off.</p>">Delay</option>
+					<option value="" data-tip="<p>Switches the CHORUS on and off.</p>">Chorus</option>
+					<option value="" data-tip="<p>Switches the REVERB on and off.</p>">Reverb</option>
+					<option value="" data-tip="<p>Switches the Pedal FX on and off.</p>">PdlFX</option>
+					<option value="" data-tip="<p>Switches the SEND/RETURN on and off.</p>">S/R</option>
+					<option value="" data-tip="<p>Switches the Amp Control on and off.</p>">AmpCtl</option>
+					<option value="" data-tip="<p>Switches the TUNER/BYPASS on and off.</p>">Tuner</option>
+					<option value="" data-tip="<p>Switches the PHRASE LOOP on and off.</p>">PL</option>
+					<option value="" data-tip="<p>Records/plays back the phrase.</p>">PL R/P</option>
+					<option value="" data-tip="<p>Clears the phrase.</p>">PL Clr</option>
+					<option value="" data-tip="<p>Mutes playback of the phrase.</p>">PL M/P</option>
+					<option value="" data-tip="<p>Used for tap input of the Master BPM.</p>">BPMTap</option>
+					<option value="" data-tip="<p>Used for tap input of the delay time.</p>">DlyTap</option>
+					<option value="" data-tip="<p>Controls the Start/Stop of external MIDI devices (such as sequencers).</p>">MIDI</option>
+					<option value="" data-tip="<p>Controls the Play/Stop of external MIDI devices (such as hard disk recorders).</p>">MMCPly</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 10 units.</p>">Lev+10</option>
+					<option value="" data-tip="<p>Increases the patch volume level by 20 units.</p>">Lev+20</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 10 units.</p>">Lev-10</option>
+					<option value="" data-tip="<p>Decreases the patch volume level by 20 units.</p>">Lev-20</option>
+					<option value="" data-tip="<p>Switches to the next higher patch number in the same bank as the currently selected patch.</p>">NumInc</option>
+					<option value="" data-tip="<p>Switches to the next lower patch number in the same bank as the currently selected patch.</p>">NumDec</option>
+					<option value="" data-tip="<p>Switches to the next higher bank number.</p>">BnkInc</option>
+					<option value="" data-tip="<p>Switches to the next lower bank number.</p>">BnkDec</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td class="parameter2">Pedal 1</td>
+				<td class="parameter2">Pedal 2</td>
+				<td class="parameter2">Pedal 3</td>
+				<td class="parameter2">Pedal 4</td>
+				<td class="parameter2">Bank ▼<br/>Pedal</td>
+				<td class="parameter2">Bank ▲<br/>Pedal</td>
+			</tr>
+		</table>
+		
+		<table id="SysPlay" style="display:none;">
+			<tr><td colspan=""><h2 onClick="GetParameter('SystemPlayOption')" class="getParameters" data-tip="<p></p>">Play Option</h2></td></tr>
+		</table>
+		
+		<table id="SysControl" style="display:none;">
+			<tr><td colspan=""><h2 onClick="GetParameter('SystemController')" class="getParameters" data-tip="<p></p>">Controller</h2></td></tr>
+		</table>
+		
+		<table id="SysLCD" style="display:none;">
+			<tr><td colspan=""><h2 onClick="GetParameter('SystemLCD')" class="getParameters" data-tip="<p></p>">LCD</h2></td></tr>
+		</table>
+		
+		<table id="SysMIDI" style="display:none;">
+			<tr><td colspan=""><h2 onClick="GetParameter('SystemMIDI')" class="getParameters" data-tip="<p></p>">MIDI</h2></td></tr>
+		</table>
+		
+		<table id="SysUSB" style="display:none;">
+			<tr><td colspan=""><h2 onClick="GetParameter('SystemUSB')" class="getParameters" data-tip="<p></p>">USB</h2></td></tr>
+		</table>		
+	</div>
+	<script>
+	<!-- 
+		GT10Controller();
+		
+		showForm(0);
+	-->
+	</script>
+</body>
+</html>
